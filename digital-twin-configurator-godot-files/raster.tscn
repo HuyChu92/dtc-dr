@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0lj2rfv6bj0n"]
+
+[ext_resource type="PackedScene" uid="uid://buo5k04wdm5ql" path="res://ComponentMenu.tscn" id="1_axixm"]
+[ext_resource type="Script" path="res://scripts/raster-main.gd" id="1_ebo5y"]
+
+[sub_resource type="GDScript" id="GDScript_sl01v"]
+script/source = "extends GraphEdit
+
+#Deze signal nodes regelen het 'plakken' van de lijnen
+func _on_connection_request(from, from_slot, to, to_slot):
+	connect_node(from, from_slot, to, to_slot)
+	SignalHub.emit_signal(\"ConnectionLine\", from, from_slot, to, to_slot)
+
+func _on_disconnection_request(from, from_slot, to, to_slot):
+	disconnect_node(from, from_slot, to, to_slot)
+"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ebo5y")
+
+[node name="GraphEdit" type="GraphEdit" parent="."]
+layout_mode = 0
+offset_right = 1820.0
+offset_bottom = 980.0
+script = SubResource("GDScript_sl01v")
+
+[node name="ComponentMenu" parent="GraphEdit" instance=ExtResource("1_axixm")]
+layout_mode = 1
+offset_left = 670.0
+offset_top = -36.0
+offset_right = 670.0
+offset_bottom = -36.0
+
+[node name="Button-send" type="Button" parent="."]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 9.0
+offset_right = 391.0
+offset_bottom = 41.0
+text = "Add send
+"
+
+[node name="Button-receive" type="Button" parent="."]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 9.0
+offset_right = 550.0
+offset_bottom = 41.0
+text = "Add receive"
+
+[connection signal="connection_request" from="GraphEdit" to="GraphEdit" method="_on_connection_request"]
+[connection signal="disconnection_request" from="GraphEdit" to="GraphEdit" method="_on_disconnection_request"]
+[connection signal="pressed" from="Button-send" to="." method="_on_add_send_comp_button_pressed"]
+[connection signal="pressed" from="Button-receive" to="." method="_on_add_receive_comp_button_pressed"]

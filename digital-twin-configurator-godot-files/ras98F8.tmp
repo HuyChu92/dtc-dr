@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0lj2rfv6bj0n"]
+
+[sub_resource type="GDScript" id="GDScript_4h1db"]
+script/source = "extends Control
+
+@onready var component = load(\"res://component.tscn\")
+
+@onready var Graph = $GraphEdit
+
+func add_node(type):
+	Graph.add_child(type.instantiate())
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+func _on_button_pressed():
+	add_node(component)
+
+"
+
+[sub_resource type="GDScript" id="GDScript_sl01v"]
+script/source = "extends GraphEdit
+
+
+
+
+
+func _on_connection_request(from, from_slot, to, to_slot):
+	connect_node(from, from_slot, to, to_slot)
+
+
+func _on_disconnection_request(from, from_slot, to, to_slot):
+	disconnect_node(from, from_slot, to, to_slot)
+"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_4h1db")
+
+[node name="GraphEdit" type="GraphEdit" parent="."]
+layout_mode = 0
+offset_right = 1820.0
+offset_bottom = 980.0
+script = SubResource("GDScript_sl01v")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 9.0
+offset_right = 355.0
+offset_bottom = 41.0
+text = "Add Component"
+
+[connection signal="connection_request" from="GraphEdit" to="GraphEdit" method="_on_connection_request"]
+[connection signal="disconnection_request" from="GraphEdit" to="GraphEdit" method="_on_disconnection_request"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
