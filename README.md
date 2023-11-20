@@ -2,7 +2,6 @@
 
 Project in naam van - https://dataintelligence.zuyd.nl/
 
-## ncmpcpp – featureful ncurses based MPD client inspired by ncmpc
 ## Digital Twin configurator - 
 
 ### Functies:
