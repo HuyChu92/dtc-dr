@@ -1,5 +1,3 @@
-# dtc-dr
-
 # Zuyd DI-lab - Digital Twin Configurator
 
 Project in naam van - https://dataintelligence.zuyd.nl/
@@ -23,9 +21,9 @@ Project in naam van - https://dataintelligence.zuyd.nl/
 ### Bekende problemen:
 * Momenteel enkel ondersteuning voor API's die een list bieden.
 
-### Installatie:
+### Installatie & eerste gebruik:
 
-1. 
-
-
-### Gebruik:
+1. Installeer Flask en maak een environment. Verplaats het `app.py` bestand in deze environment
+2. Installeer Godot 4.1.3 en importeer vervolgend `project.godot` vanuit de map `digital-twin-configurator-files` in de project manager.
+3. Voer de Flask server uit door in de *virtual environment* directory app.py uit te voeren (`python3 app.py`)
+4. Vervang 0.0.0.0 met een van de 'running on' adressen, zichtbaar in de Flask server console, in bij de `_flaskRequest` onder `ReceiveComponent.gd`
