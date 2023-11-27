@@ -1,0 +1,16 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1701041799
+component-receive.tscn::PackedScene::4278386435517293849::1700926667::0::1::::<><>::res://scripts/ReceiveComponent.gd
+component-send.tscn::PackedScene::1128249797330041679::1701040330::0::1::::<><>::res://scripts/SendComponent.gd
+ComponentMenu.tscn::PackedScene::3820939571619805363::1700926667::0::1::::<><>::res://scripts/ComponentMenu.gd
+export_presets.cfg::TextFile::-1::1701040330::0::1::::<><>::
+icon.svg::CompressedTexture2D::3468982705530013322::1700926667::1701041800::1::::<><>::
+raster.tscn::PackedScene::4164445500925493979::1700973162::0::1::::<><>::uid://buo5k04wdm5ql::::res://ComponentMenu.tscn<>res://scripts/raster-main.gd
+::res://scripts/::1701040330
+ComponentMenu.gd::GDScript::-1::1700926667::0::1::::<>Control<>::
+connections.gd::GDScript::-1::1700926667::0::1::::<>Node<>::
+nodeInformation.gd::GDScript::-1::1700926667::0::1::::<>Node<>::
+raster-main.gd::GDScript::-1::1701040330::0::1::::<>Control<>::
+ReceiveComponent.gd::GDScript::-1::1700926667::0::1::::<>GraphNode<>::
+SendComponent.gd::GDScript::-1::1701040330::0::1::::<>GraphNode<>::
+SignalHub.gd::GDScript::-1::1700926667::0::1::::<>Node<>::

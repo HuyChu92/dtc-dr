@@ -64,6 +64,40 @@ text = "Configure"
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 
+[node name="Timer" type="Timer" parent="Line2"]
+
+[node name="Button" type="Button" parent="Line2"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Start"
+alignment = 0
+
+[node name="Button2" type="Button" parent="Line2"]
+layout_mode = 2
+text = "End"
+alignment = 0
+
+[node name="Label" type="Label" parent="Line2"]
+layout_mode = 2
+text = "Machine1.Temperature"
+
+[node name="TextEdit" type="TextEdit" parent="Line2"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Line2"]
+layout_mode = 2
+text = "Machine1.Pressure"
+
+[node name="TextEdit2" type="TextEdit" parent="Line2"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [connection signal="close_request" from="." to="." method="_on_close_request"]
 [connection signal="resize_request" from="." to="." method="_on_resize_request"]
 [connection signal="pressed" from="ConfigureButton" to="." method="_on_configure_button_pressed"]
+[connection signal="pressed" from="Line2/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Line2/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
