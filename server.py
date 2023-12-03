@@ -63,5 +63,5 @@ class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
 Handler = MyHTTPRequestHandler
 
 with socketserver.TCPServer(("", PORT), Handler) as httpd:
-    print(f"Serving at port {PORT}")
+    print(f"Serving at port http://127.0.0.1:8080")
     httpd.serve_forever()

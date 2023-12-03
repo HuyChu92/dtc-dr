@@ -79,3 +79,36 @@ func _on_configure_button_pressed():
 	receiver_node_name = get_name()
 	SignalHub.emit_signal("ComponentMenuStatus", ComponentMenuVisBool, receiver_node_name)
 	SignalHub.emit_signal("NodeInformation", receiver_node_name)
+
+
+func _on_button_pressed():
+	makeGetRequest()
+	connect("request_completed", Callable(self, "_on_request_completed_callback"))
+	pass # Replace with function body.
+	
+func makeGetRequest():
+	# Set the target URL
+	var url = "http://127.0.0.1:8000/fetchAverageMachine1/"
+
+	# Create an HTTPRequest object
+	var request = HTTPRequest.new()
+
+	# Connect the request_completed signal to the _on_request_completed method
+	#request.connect("request_completed", Callable(self, "_on_request_completed"))
+	$HTTPGet.request_completed.connect(_on_request_completed)
+
+	# Set the request parameters
+	$HTTPGet.request(url)
+
+	
+func _on_request_completed(result, response_code, headers, body):
+	var json = JSON.parse_string(body.get_string_from_utf8())
+	print(json)
+	$Line2/TextEdit.text = str(json["averageTemperature"])
+	# Emit a signal to pass the result to the calling code
+	emit_signal("request_completed", json["averageTemperature"])
+	
+func _on_request_completed_callback(average_temperature):
+	# Handle the result here
+	$Line2/TextEdit.text = str(average_temperature)
+

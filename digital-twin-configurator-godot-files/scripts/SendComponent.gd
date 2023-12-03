@@ -85,8 +85,8 @@ func makePostRequest(machine1: String, machine2: String):
 	# Set the request data
 	var post_data = {
 		"timestamp": Time.get_datetime_string_from_system(),
-		"Machine1.RawMaterial.Property1": str(machine1),
-		"Machine1.RawMaterial.Property2": str(machine2)
+		"MachineRawMaterialProperty1": float(machine1),
+		"MachineRawMaterialProperty2": float(machine2)
 	}
 	print(post_data)
 
@@ -123,7 +123,7 @@ func _on_start_button_pressed():
 	_start_interval()
 	
 
-# Helper function to retrieve random values
+# Helper functie om willekeurge waardes te generen
 func _retrieve_random_values(machine: String):
 	var machine_dict = {
 		"Machine1.RawMaterial.Property1": {

@@ -1,3 +1,5 @@
+res://raster.tscn
 res://scripts/SendComponent.gd
 res://component-send.tscn
-res://raster.tscn
+res://component-receive.tscn
+res://scripts/ReceiveComponent.gd

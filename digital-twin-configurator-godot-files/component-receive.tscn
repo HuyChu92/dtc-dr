@@ -55,8 +55,20 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 
+[node name="Button" type="Button" parent="Line2"]
+layout_mode = 2
+text = "Get Average"
+alignment = 0
+
+[node name="TextEdit" type="TextEdit" parent="Line2"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+
 [node name="HTTPPost" type="HTTPRequest" parent="."]
+
+[node name="HTTPGet" type="HTTPRequest" parent="."]
 
 [connection signal="close_request" from="." to="." method="_on_close_request"]
 [connection signal="resize_request" from="." to="." method="_on_resize_request"]
+[connection signal="pressed" from="Line2/Button" to="." method="_on_button_pressed"]
 [connection signal="request_completed" from="HTTPPost" to="." method="_on_http_post_request_completed"]
