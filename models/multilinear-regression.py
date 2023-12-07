@@ -3,14 +3,22 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.preprocessing import StandardScaler
+import pickle
 
 # Assuming df is your DataFrame
 df = pd.read_csv(r"D:\dtc-dr\data-analyse\continuous_factory_process.csv", delimiter=",")
 # X represents input features (sensor readings from Machines 1 to 3)
 # y represents the target variable (measurements of the 15 features after the first stage)
-X = df[['Machine1.RawMaterial.Property1', 'Machine1.RawMaterial.Property2', 'Machine1.RawMaterial.Property3',
-        'Machine2.RawMaterial.Property1', 'Machine2.RawMaterial.Property2', 'Machine2.RawMaterial.Property3',
-        'Machine3.RawMaterial.Property1', 'Machine3.RawMaterial.Property2', 'Machine3.RawMaterial.Property3']]
+# Specify the list of prefixes you want to filter
+prefixes_to_match = ['Machine1', 'Machine2' , 'Machine3', 'time_stamp']
+
+# Use list comprehension to filter columns based on prefixes
+filtered_columns = [col for col in df.columns if any(col.startswith(prefix) for prefix in prefixes_to_match)]
+
+
+X = df[filtered_columns]
+X = X.drop('time_stamp', axis=1) 
+print(X.columns.tolist())
 
 y = df[['Stage1.Output.Measurement0.U.Actual', 'Stage1.Output.Measurement1.U.Actual',
         'Stage1.Output.Measurement2.U.Actual', 'Stage1.Output.Measurement3.U.Actual',
@@ -32,8 +40,12 @@ X_test_scaled = scaler.transform(X_test)
 # Create a multilinear regression model
 model = LinearRegression()
 
+
 # Train the model
 model.fit(X_train_scaled, y_train)
+
+with open('linear_regression_model.pkl', 'wb') as model_file:
+    pickle.dump(model, model_file)
 
 # Make predictions on the test set
 y_pred = model.predict(X_test_scaled)
