@@ -9,7 +9,9 @@ urlpatterns = [
     path('saveMeasurement/', views.saveMeasurement, name='saveMeasurement'),
     path('fetchLatestMeasurement/', views.fetchLatestMeasurement, name='fetchLatestMeasurement'),
     path('fetchAllMeasurements/', views.fetchAllMeasurements, name='fetchAllMeasurements'),
+    path('fetchInputTestData/', views.fetchInputTestData, name='fetchInputTestData'),
     path('fetchAverageMachine1/', views.fetchAverageMachine1, name='fetchAverageMachine1'),
+    path('getPrediction/', views.getPrediction, name='getPrediction'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 

@@ -9,10 +9,9 @@ __pycache__/
 # Maps
 cosmos
 .vscode
+env
 
 # Settings
-settings.py
-views.py
 
 # Distribution / packaging
 .Python
