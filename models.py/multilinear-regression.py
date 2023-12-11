@@ -1,11 +1,11 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.metrics import mean_squared_error, r2_score 
 from sklearn.preprocessing import StandardScaler
 
 # Assuming df is your DataFrame
-df = pd.read_csv(r"D:\dtc-dr\data-analyse\continuous_factory_process.csv", delimiter=",")
+df = pd.read_csv(r"D:\projects\dtc-dr\data-analyse\continuous_factory_process.csv", delimiter=",")
 # X represents input features (sensor readings from Machines 1 to 3)
 # y represents the target variable (measurements of the 15 features after the first stage)
 X = df[['Machine1.RawMaterial.Property1', 'Machine1.RawMaterial.Property2', 'Machine1.RawMaterial.Property3',
