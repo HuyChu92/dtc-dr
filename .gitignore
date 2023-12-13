@@ -12,8 +12,6 @@ cosmos
 env
 
 # Settings
-settings.py
-views.py
 
 # Distribution / packaging
 .Python
