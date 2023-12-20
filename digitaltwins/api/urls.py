@@ -12,6 +12,8 @@ urlpatterns = [
     path('fetchInputTestData/', views.fetchInputTestData, name='fetchInputTestData'),
     path('fetchAverageMachine1/', views.fetchAverageMachine1, name='fetchAverageMachine1'),
     path('getPrediction/', views.getPrediction, name='getPrediction'),
+    path('trainModel/', views.trainModel, name='trainModel'),
+    path('fetchDatasets/', views.fetchDatasets, name='fetchDatasets'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 

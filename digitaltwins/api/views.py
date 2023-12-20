@@ -13,7 +13,11 @@ from bson.json_util import dumps
 import json
 import pandas as pd
 import pickle
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import *
+import os
+import pickle
+from .modelhandler import ModelSelector
+from datetime import datetime
 
 PREDICTIONS_MAPPING = [
     "Stage1.Output.Measurement0.U.Actual",
@@ -229,5 +233,61 @@ def getPrediction(request):
             predictions[PREDICTIONS_MAPPING[index]] = value
         output_dict[index] = {"input": input, "predictions": predictions}
         result.append(output_dict)
-    print(result)
     return JsonResponse(result, safe=False)
+
+@api_view(["POST"])
+def trainModel(request):
+    """ Train een model gebasseerd op de geselecteerde features en model
+
+    Args:
+        request (dict): _description_
+
+    Returns:
+        _type_: _description_
+    """
+    data = request.data
+    features = data["features"]
+    y = data["y"]
+    selected_model = data["model"]
+    dataset = data["dataset"]
+    scaler = data["scaler"]
+    save_model = data["save_model"]
+    print(data)
+
+    model = ModelSelector(
+        dataset,
+        features,
+        y,
+        selected_model,
+        scaler
+    )
+    evaluation = model.evaluateModel()
+
+    if save_model:
+        file_path = f"{selected_model}_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.pkl"
+        print(file_path)
+        with open(file_path, 'wb') as file:
+            pickle.dump(model, file)
+
+    return JsonResponse({"evaluation": evaluation})
+
+@api_view(["GET"])
+def fetchDatasets(request):
+    """ Toon de datasets die de gebruiker heeft toegevoegd
+
+    Args:
+        request (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
+    source = r'D:\dtc-dr\digitaltwins\api\datasets'
+    files = []
+    for file in os.listdir(source):
+        files.append(file)
+
+    return JsonResponse({"files": files})
+
+@api_view(["GET"])
+def fetchDatasetInfo(request):
+    return None
