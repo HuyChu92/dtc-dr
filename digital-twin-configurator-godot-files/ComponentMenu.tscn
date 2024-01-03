@@ -13,6 +13,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_64b2g")
@@ -56,12 +58,30 @@ text = "X
 
 [node name="ComponentNameLabel" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 868.0
-offset_top = 108.0
-offset_right = 960.0
-offset_bottom = 134.0
+offset_left = 865.0
+offset_top = 96.0
+offset_right = 994.0
+offset_bottom = 135.0
 text = "Placeholder"
 label_settings = SubResource("LabelSettings_fv5sy")
+
+[node name="NewNameInput" type="LineEdit" parent="Control"]
+layout_mode = 0
+offset_left = 864.0
+offset_top = 96.0
+offset_right = 995.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 12
+placeholder_text = "Nieuwe Naam (Enter)"
+flat = true
+
+[node name="InvisNameChangeButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 860.0
+offset_top = 92.0
+offset_right = 1034.0
+offset_bottom = 140.0
+flat = true
 
 [node name="setApiButton" type="Button" parent="Control"]
 layout_mode = 0
@@ -117,5 +137,7 @@ offset_right = 1077.0
 offset_bottom = 622.0
 
 [connection signal="pressed" from="Control/closeButton" to="." method="_on_close_button_pressed"]
+[connection signal="text_submitted" from="Control/NewNameInput" to="." method="_on_new_name_input_text_submitted"]
+[connection signal="button_down" from="Control/InvisNameChangeButton" to="." method="_on_invis_name_change_button_button_down"]
 [connection signal="pressed" from="Control/setApiButton" to="." method="_on_set_api_button_pressed"]
 [connection signal="request_completed" from="Control/setApiButton/HTTPRequest" to="." method="_on_http_request_request_completed"]

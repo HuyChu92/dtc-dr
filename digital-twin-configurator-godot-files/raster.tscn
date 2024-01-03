@@ -43,18 +43,9 @@ offset_left = 300.0
 offset_top = 9.0
 offset_right = 391.0
 offset_bottom = 41.0
-text = "Add send
+text = "Add Component
 "
-
-[node name="Button-receive" type="Button" parent="."]
-layout_mode = 0
-offset_left = 416.0
-offset_top = 9.0
-offset_right = 550.0
-offset_bottom = 41.0
-text = "Add receive"
 
 [connection signal="connection_request" from="GraphEdit" to="GraphEdit" method="_on_connection_request"]
 [connection signal="disconnection_request" from="GraphEdit" to="GraphEdit" method="_on_disconnection_request"]
 [connection signal="pressed" from="Button-send" to="." method="_on_add_send_comp_button_pressed"]
-[connection signal="pressed" from="Button-receive" to="." method="_on_add_receive_comp_button_pressed"]
