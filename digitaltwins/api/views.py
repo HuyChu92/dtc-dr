@@ -1,8 +1,10 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 
 from rest_framework.decorators import api_view
 from rest_framework.relations import ManyRelatedField
@@ -16,8 +18,11 @@ import pickle
 from sklearn.linear_model import *
 import os
 import pickle
-from .modelhandler import ModelSelector
+from .modelhandler import *
 from datetime import datetime
+from .forms import FileUploadForm
+from pathlib import Path
+
 
 PREDICTIONS_MAPPING = [
     "Stage1.Output.Measurement0.U.Actual",
@@ -291,3 +296,72 @@ def fetchDatasets(request):
 @api_view(["GET"])
 def fetchDatasetInfo(request):
     return None
+
+
+def uploadDataset(request):
+    if request.method == 'POST':
+        form = FileUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Get the uploaded file from the form
+            uploaded_file = form.cleaned_data['file']
+            file_name = uploaded_file.name.split('.')[0]
+            # folder_path = os.path.join('api/datasets', file_name)
+            folder_path = Path('api/datasets') / file_name
+            folder_path.mkdir(parents=True, exist_ok=True)
+
+            plots_path = Path('api/datasets') / file_name / "plots"
+            plots_path.mkdir(parents=True, exist_ok=True)
+
+            models_path = Path('api/datasets') / file_name / "models"
+            models_path.mkdir(parents=True, exist_ok=True)
+
+            # Specify the directory where you want to save the file
+            upload_directory = os.path.join('api/datasets', file_name)
+
+            # Ensure the directory exists, create it if necessary
+            os.makedirs(upload_directory, exist_ok=True)
+
+            # Build the full path to save the file
+            file_path = os.path.join(upload_directory, uploaded_file.name)
+
+            # Open the destination file in binary write mode and copy the uploaded file's content
+            with open(file_path, 'wb') as destination_file:
+                for chunk in uploaded_file.chunks():
+                    destination_file.write(chunk)
+
+            # Generate evaluation metrics and plots
+            DatasetEvaluator(Path('api/datasets') / file_name / uploaded_file.name, Path('api/datasets') / file_name)
+
+            return render(request, 'api/upload.html', {'form': form})
+    else:
+        form = FileUploadForm()
+    return render(request, 'api/upload.html', {'form': form})
+
+def dataset_detail(request, dataset):
+    dataset_source = os.path.join('api/datasets', dataset.split('.')[0], dataset)
+    df = pd.read_csv(dataset_source) if 'csv' in dataset else pd.read_excel(dataset_source)
+    total_nan_count = df.isna().sum().sum()
+    duplicate_count = df.duplicated().sum()
+    return JsonResponse({"NaN": int(total_nan_count), "duplicate_count": int(duplicate_count) })
+
+def dataset_plotimage(request, dataset, imagename):
+    # Assuming your images are stored in a 'media' directory within your Django project
+    image_path = os.path.join('api/datasets', dataset.split('.')[0], "plots", imagename)
+
+    # Check if the file exists
+    if not os.path.exists(image_path):
+        return HttpResponse("Image not found", status=404)
+
+    # Open the file for reading
+    with open(image_path, 'rb') as image_file:
+        # Determine the content type based on the file extension
+        _, extension = os.path.splitext(imagename)
+        content_type = f'image/{extension.lstrip(".")}'
+
+        # Set the response content type
+        response = HttpResponse(image_file.read(), content_type=content_type)
+
+        # Set the content-disposition header to make the browser prompt the user to download the file
+        response['Content-Disposition'] = f'attachment; filename="{imagename}"'
+
+        return response

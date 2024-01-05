@@ -6,6 +6,10 @@ from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.feature_selection import SelectKBest, f_regression
 import numpy as np
 from sklearn.preprocessing import StandardScaler
+import seaborn as sns
+import matplotlib.pyplot as plt
+import os
+from pathlib import Path
 
 
 class ModelSelector:
@@ -26,7 +30,8 @@ class ModelSelector:
             self.X, self.Y, test_size=0.2, random_state=42
         )
         self.model.fit(self.X_train, self.y_train)
- 
+        self.corr_df = None
+
     def evaluateModel(self):
         # Print results from the training set
         train_r2_score = self.model.score(self.X_train, self.y_train)
@@ -50,49 +55,84 @@ class ModelSelector:
         # print(f"Test set - Root Mean Squared Error: {round(rmse, 2)}")
 
         evaluate_results = {
-            'train': {
-                'R-squared': train_r2_score,
-                'Mean Squared Error': train_mse,
-                'Root Mean Squared Error': train_rmse
+            "train": {
+                "R-squared": train_r2_score,
+                "Mean Squared Error": train_mse,
+                "Root Mean Squared Error": train_rmse,
             },
-            'test' : {
-                'R-squared': r2_score,
-                'Mean Squared Error': mse,
-                'Root Mean Squared Error': rmse
+            "test": {
+                "R-squared": r2_score,
+                "Mean Squared Error": mse,
+                "Root Mean Squared Error": rmse,
             },
         }
 
         return evaluate_results
 
-    def calculate_best_regression_model(self):
-        for k in range(len(self.X.columns) + 1):
-            # Instantiate SelectKBest with f_regression scoring function
-            selector = SelectKBest(score_func=f_regression, k=k)  # Choose the appropriate k value
 
-            # Fit and transform the data
-            X_new = selector.fit_transform(X, y)
+class DatasetEvaluator:
+    def __init__(self, dataset: str, dataset_dir: str):
+        print(dataset)
+        self.dataset_dir = dataset_dir
+        self.dataset = dataset
+        self.df = (
+            pd.read_csv(self.dataset)
+            if "csv" in str(self.dataset)
+            else pd.read_excel(self.dataset)
+        )
+        self.createHeatmap()
 
-            # Get selected features
-            selected_features = selector.get_support()
+    def createHeatmap(self):
+        # Check correlation
+        corr_df = pd.get_dummies(data=self.df, drop_first=False)
+        corr_df
+        correlation_matrix = corr_df.corr()
 
-            # Transform original data to keep only selected features
-            X_selected = selector.transform(X)
+        # Step 2: Visualize the correlation matrix using a heatmap
+        fig, ax = plt.subplots(figsize=(10, 10))  # Adjust the figure size as needed
+        sns.heatmap(
+            correlation_matrix,
+            annot=True,
+            cmap="coolwarm",
+            fmt=".2f",
+            annot_kws={"size": 8},
+            ax=ax,
+        )
+        plt.title("Correlation Matrix")
 
-        return None
-    
+        # Save the plot as an image file (e.g., PNG)
+        plt.savefig(str(self.dataset_dir) + "/plots" + "/correlation_matrix.png")
+        self.corr_df = correlation_matrix
 
-dataset = r'D:\dtc-dr\digitaltwins\api\datasets\House_Price.csv'
-features = ['room_num', 'teachers', 'poor_prop']
-y = 'price'
-model = 'regression'
-scaler = False
+    # def calculate_best_regression_model(self):
+    #     for k in range(len(self.X.columns) + 1):
+    #         # Instantiate SelectKBest with f_regression scoring function
+    #         selector = SelectKBest(score_func=f_regression, k=k)  # Choose the appropriate k value
 
-test = ModelSelector(
-    dataset,
-    features,
-    y,
-    model,
-    scaler
-)
+    #         # Fit and transform the data
+    #         X_new = selector.fit_transform(X, y)
 
-print(test.calculate_best_regression_model())
+    #         # Get selected features
+    #         selected_features = selector.get_support()
+
+    #         # Transform original data to keep only selected features
+    #         X_selected = selector.transform(X)
+
+    #     return None
+
+
+# dataset = r'D:\dtc-dr\digitaltwins\api\datasets\House_Price.csv'
+# features = ['room_num', 'teachers', 'poor_prop']
+# y = 'price'
+# model = 'regression'
+# scaler = False
+
+# test = ModelSelector(
+#     dataset,
+#     features,
+#     y,
+#     model,
+#     scaler
+# )
+
+# print(test.calculate_best_regression_model())
