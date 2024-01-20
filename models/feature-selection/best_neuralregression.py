@@ -95,3 +95,4 @@ with open('test_regression_MLP_results.json', 'w') as json_file:
     json.dump(results, json_file, indent=4)
 
 print("Results saved to regression_results.json")
+
