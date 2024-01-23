@@ -16,7 +16,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.988867, 1)
 mouse_filter = 1
-show_close = true
 resizable = true
 slot/0/left_enabled = true
 slot/0/left_type = 0
@@ -95,7 +94,6 @@ layout_mode = 2
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
-[connection signal="close_request" from="." to="." method="_on_close_request"]
 [connection signal="resize_request" from="." to="." method="_on_resize_request"]
 [connection signal="pressed" from="ConfigureButton" to="." method="_on_configure_button_pressed"]
 [connection signal="pressed" from="Line2/Button" to="." method="_on_button_pressed"]

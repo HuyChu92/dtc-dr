@@ -39,8 +39,31 @@ func _onInitialiseNode(ComponentId, InitialComponentName):
 		if item["ComponentId"] == ComponentId:
 			ComponentName = item["component"]["name"]
 			print("The component name for Id: ", ComponentId, " is: ", ComponentName)
-			_componentName.text = ComponentName
-			$IdLabel.text = str(ComponentId)
+
+
+
+			#_componentName.text = ComponentName
+			#$IdLabel.text = str(ComponentId)
+
+
+			
+			var root = get_tree().get_root()
+			var getLocalNode = root.get_node("/root/Control/GraphEdit/" + ComponentName)
+			if getLocalNode:
+				var localNodeName = getLocalNode.get_name()
+				print("root:", root, " getNode:", ComponentName)
+				if str(localNodeName) == ComponentName:
+					var getLocalNodeId = root.get_node("/root/Control/GraphEdit/" + ComponentName + "/IdLabel")
+					var getLocalNodeLabel = root.get_node("/root/Control/GraphEdit/" + ComponentName + "/Line/ComponentName")
+					getLocalNodeLabel.text = ComponentName
+					ComponentName = self.ComponentName
+					getLocalNodeId.text = str(ComponentId)
+				else:
+					print("het is over")
+			else:
+				print("Node not found.")
+			
+			#Node path:GraphEdit/component_0
 			break
 		else:
 			print("No matching component found for ComponentId: " , ComponentId )
@@ -51,8 +74,9 @@ func _onInitialiseNode(ComponentId, InitialComponentName):
 			
 	
 func _editedName(ComponentName):
-	self.ComponentName = ComponentName
-	_componentName.text = ComponentName
+	pass
+	#self.ComponentName = ComponentName
+	#_componentName.text = ComponentName
 	
 
 
@@ -71,6 +95,9 @@ func _on_close_request():
 
 
 func _on_configure_button_pressed():
+	ComponentName = get_name()
+	print("Current Node Name: ", ComponentName)
+		
 	self.ComponentMenuVisBool = true
 	SignalHub.emit_signal("ComponentMenuStatus", ComponentMenuVisBool, ComponentName)
 	SignalHub.emit_signal("NodeInformation", ComponentName)
