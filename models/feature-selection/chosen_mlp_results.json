@@ -1,0 +1,107 @@
+{
+    "Stage1.Output.Measurement1.U.Actual": {
+        "r2_scores_train": "0.7283264361961774",
+        "r2_scores_test": "0.7045586513596629",
+        "selected_feature_indices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            24,
+            25,
+            26,
+            27,
+            31,
+            32,
+            33,
+            34
+        ]
+    },
+    "Stage1.Output.Measurement7.U.Actual": {
+        "r2_scores_train": "0.7291717768419613",
+        "r2_scores_test": "0.7318326041656463",
+        "selected_feature_indices": [
+            0,
+            3,
+            8,
+            10,
+            12,
+            13,
+            14,
+            15,
+            19,
+            25,
+            26,
+            27,
+            32,
+            34
+        ]
+    },
+    "Stage1.Output.Measurement11.U.Actual": {
+        "r2_scores_train": "0.8850364876419273",
+        "r2_scores_test": "0.8982211183260046",
+        "selected_feature_indices": [
+            0,
+            1,
+            3,
+            5,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            19,
+            21,
+            22,
+            25,
+            26,
+            27,
+            31,
+            32,
+            33,
+            34
+        ]
+    },
+    "FirstStage.CombinerOperation.Temperature1.U.Actual": {
+        "r2_scores_train": "0.8593741481484689",
+        "r2_scores_test": "0.8352319173201423",
+        "selected_feature_indices": [
+            0,
+            3,
+            8,
+            9,
+            25,
+            26,
+            27,
+            32
+        ]
+    },
+    "FirstStage.CombinerOperation.Temperature2.U.Actual": {
+        "r2_scores_train": "0.871689688618935",
+        "r2_scores_test": "0.8702228956848956",
+        "selected_feature_indices": [
+            0,
+            3,
+            7,
+            8,
+            24,
+            25,
+            26,
+            27,
+            32
+        ]
+    }
+}
