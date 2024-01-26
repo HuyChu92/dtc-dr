@@ -1,0 +1,127 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj6rpdmv2bt5a"]
+
+[ext_resource type="Script" path="res://scripts/ComponentMenu.gd" id="1_u0fbc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fv5sy"]
+font_size = 22
+
+[sub_resource type="LabelSettings" id="LabelSettings_2i5vm"]
+font_size = 11
+
+[node name="ComponentMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u0fbc")
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 16.0
+offset_right = 56.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = 543.0
+offset_top = 85.0
+offset_right = 1100.0
+offset_bottom = 779.0
+
+[node name="closeButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 1050.0
+offset_top = 99.0
+offset_right = 1081.0
+offset_bottom = 130.0
+text = "X
+"
+
+[node name="ComponentNameLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 566.0
+offset_top = 96.0
+offset_right = 695.0
+offset_bottom = 135.0
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_fv5sy")
+
+[node name="NewNameInput" type="LineEdit" parent="Control"]
+layout_mode = 0
+offset_left = 565.0
+offset_top = 96.0
+offset_right = 696.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 12
+placeholder_text = "Nieuwe Naam (Enter)"
+flat = true
+
+[node name="InvisNameChangeButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 561.0
+offset_top = 92.0
+offset_right = 735.0
+offset_bottom = 140.0
+flat = true
+
+[node name="apiErrorLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 569.0
+offset_top = 215.0
+offset_right = 737.0
+offset_bottom = 238.0
+text = "Invalid API key"
+label_settings = SubResource("LabelSettings_2i5vm")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 569.0
+offset_top = 260.0
+offset_right = 692.0
+offset_bottom = 286.0
+pivot_offset = Vector2(491, 274)
+text = "Feature Selectie
+"
+
+[node name="apiSuccesLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 569.0
+offset_top = 215.0
+offset_right = 750.0
+offset_bottom = 238.0
+text = "API allocation has been successful"
+label_settings = SubResource("LabelSettings_2i5vm")
+
+[node name="featureControl" type="Control" parent="Control"]
+anchors_preset = 0
+offset_left = 570.0
+offset_top = 298.0
+offset_right = 1080.0
+offset_bottom = 407.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/featureControl"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/featureControl/VBoxContainer"]
+layout_mode = 2
+
+[node name="featureId" type="Label" parent="Control/featureControl/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="featureName" type="Label" parent="Control/featureControl/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Measurement1.Actual"
+
+[node name="featureStatus" type="CheckBox" parent="Control/featureControl/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="Control/closeButton" to="." method="_on_close_button_pressed"]
+[connection signal="text_submitted" from="Control/NewNameInput" to="." method="_on_new_name_input_text_submitted"]
+[connection signal="button_down" from="Control/InvisNameChangeButton" to="." method="_on_invis_name_change_button_button_down"]

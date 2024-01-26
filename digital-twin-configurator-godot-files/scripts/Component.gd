@@ -101,3 +101,7 @@ func _on_configure_button_pressed():
 	self.ComponentMenuVisBool = true
 	SignalHub.emit_signal("ComponentMenuStatus", ComponentMenuVisBool, ComponentName)
 	SignalHub.emit_signal("NodeInformation", ComponentName)
+
+
+func _on_configure_features_button_pressed():
+	pass # Replace with function body.
