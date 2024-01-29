@@ -10,8 +10,11 @@ var InitialComponentName : String = ""
 var umpteenthNewComponent  = 0
 
 
-
+#Menu Booleans
 var ComponentMenuVisBool = false
+var ComponentFeatureSelBool = false
+
+
 var ComponentName : String = ""
 var ComponentId
 var content

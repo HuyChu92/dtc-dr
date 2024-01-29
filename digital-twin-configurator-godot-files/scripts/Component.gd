@@ -4,8 +4,11 @@ extends GraphNode
 @onready var _componentName : Label = $Line/ComponentName
 #@onready var other_scene_instance = preload("res://raster.tscn").new()
 
-
+# Menu B
 var ComponentMenuVisBool = false
+var ComponentFeatureSelBool = false
+
+
 var ComponentName : String = ""
 var InitialComponentName : String = ""
 var ComponentId
@@ -96,7 +99,6 @@ func _on_close_request():
 
 func _on_configure_button_pressed():
 	ComponentName = get_name()
-	print("Current Node Name: ", ComponentName)
 		
 	self.ComponentMenuVisBool = true
 	SignalHub.emit_signal("ComponentMenuStatus", ComponentMenuVisBool, ComponentName)
@@ -104,4 +106,8 @@ func _on_configure_button_pressed():
 
 
 func _on_configure_features_button_pressed():
-	pass # Replace with function body.
+	ComponentName = get_name()
+	
+	self.ComponentFeatureSelBool = true
+	SignalHub.emit_signal("ComponentFeatureStatus", ComponentFeatureSelBool, ComponentName)
+	#SignalHub.emit_signal("NodeInformation", ComponentName)

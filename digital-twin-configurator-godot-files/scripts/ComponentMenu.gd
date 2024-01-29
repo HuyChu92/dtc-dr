@@ -97,16 +97,16 @@ func _displayRawApi(nodeInformationDict):
 		return null
 
 
-func _on_invis_name_change_button_button_down():
-	_componentNameLabel.visible = 0
-	$Control/NewNameInput.visible = 1
-	$Control/InvisNameChangeButton.visible = 0
-
-
-func _on_new_name_input_text_submitted(new_text):
-	self.ComponentName = $Control/NewNameInput.text
-	$Control/NewNameInput.visible = 0
-	_componentNameLabel.text = ComponentName
-	_componentNameLabel.visible = 1
-	$Control/InvisNameChangeButton.visible = 1
-	SignalHub.emit_signal("NodeInformation", ComponentName)
+#func _on_invis_name_change_button_button_down():
+	#_componentNameLabel.visible = 0
+	#$Control/NewNameInput.visible = 1
+	#$Control/InvisNameChangeButton.visible = 0
+#
+#
+#func _on_new_name_input_text_submitted(new_text):
+	#self.ComponentName = $Control/NewNameInput.text
+	#$Control/NewNameInput.visible = 0
+	#_componentNameLabel.text = ComponentName
+	#_componentNameLabel.visible = 1
+	#$Control/InvisNameChangeButton.visible = 1
+	#SignalHub.emit_signal("NodeInformation", ComponentName)

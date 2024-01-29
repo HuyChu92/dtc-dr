@@ -13,8 +13,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_right = 1.0
+offset_left = 1190.0
+offset_top = 7.0
+offset_right = 297.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_64b2g")
@@ -22,22 +24,21 @@ script = ExtResource("1_64b2g")
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 16.0
-offset_right = 56.0
-offset_bottom = 40.0
+offset_right = 245.0
+offset_bottom = 653.0
 
 [node name="Panel" type="Panel" parent="Control"]
 layout_mode = 0
-offset_left = 847.0
-offset_top = 85.0
-offset_right = 1100.0
-offset_bottom = 779.0
+offset_left = -13.0
+offset_right = 240.0
+offset_bottom = 694.0
 
 [node name="ApiInput" type="LineEdit" parent="Control"]
 layout_mode = 0
-offset_left = 868.0
-offset_top = 172.0
-offset_right = 1036.0
-offset_bottom = 203.0
+offset_left = 8.0
+offset_top = 87.0
+offset_right = 176.0
+offset_bottom = 118.0
 pivot_offset = Vector2(16, -40)
 
 [node name="Label" type="Label" parent="Control/ApiInput"]
@@ -49,46 +50,45 @@ text = "API Key"
 
 [node name="closeButton" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 1045.0
-offset_top = 99.0
-offset_right = 1076.0
-offset_bottom = 130.0
+offset_left = 185.0
+offset_top = 14.0
+offset_right = 216.0
+offset_bottom = 45.0
 text = "X
 "
 
 [node name="ComponentNameLabel" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 865.0
-offset_top = 96.0
-offset_right = 994.0
-offset_bottom = 135.0
+offset_left = 5.0
+offset_top = 11.0
+offset_right = 134.0
+offset_bottom = 50.0
 text = "Placeholder"
 label_settings = SubResource("LabelSettings_fv5sy")
 
 [node name="NewNameInput" type="LineEdit" parent="Control"]
 layout_mode = 0
-offset_left = 864.0
-offset_top = 96.0
-offset_right = 995.0
-offset_bottom = 135.0
+offset_left = 4.0
+offset_top = 11.0
+offset_right = 135.0
+offset_bottom = 50.0
 theme_override_font_sizes/font_size = 12
 placeholder_text = "Nieuwe Naam (Enter)"
 flat = true
 
 [node name="InvisNameChangeButton" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 860.0
-offset_top = 92.0
-offset_right = 1034.0
-offset_bottom = 140.0
+offset_top = 7.0
+offset_right = 174.0
+offset_bottom = 55.0
 flat = true
 
 [node name="setApiButton" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = 1044.0
-offset_top = 172.0
-offset_right = 1077.0
-offset_bottom = 203.0
+offset_left = 184.0
+offset_top = 87.0
+offset_right = 217.0
+offset_bottom = 118.0
 text = "Set"
 
 [node name="HTTPRequest" type="HTTPRequest" parent="Control/setApiButton"]
@@ -104,37 +104,37 @@ text = "Verwijderen"
 
 [node name="apiErrorLabel" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 868.0
-offset_top = 215.0
-offset_right = 1036.0
-offset_bottom = 238.0
+offset_left = 8.0
+offset_top = 130.0
+offset_right = 176.0
+offset_bottom = 153.0
 text = "Invalid API key"
 label_settings = SubResource("LabelSettings_2i5vm")
 
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 868.0
-offset_top = 260.0
-offset_right = 926.0
-offset_bottom = 286.0
+offset_left = 8.0
+offset_top = 175.0
+offset_right = 131.0
+offset_bottom = 201.0
 pivot_offset = Vector2(491, 274)
 text = "API Information"
 
 [node name="apiSuccesLabel" type="Label" parent="Control"]
 layout_mode = 0
-offset_left = 868.0
-offset_top = 215.0
-offset_right = 1036.0
-offset_bottom = 238.0
+offset_left = 8.0
+offset_top = 130.0
+offset_right = 189.0
+offset_bottom = 153.0
 text = "API allocation has been successful"
 label_settings = SubResource("LabelSettings_2i5vm")
 
 [node name="ApiOutput" type="RichTextLabel" parent="Control"]
 layout_mode = 0
-offset_left = 868.0
-offset_top = 295.0
-offset_right = 1077.0
-offset_bottom = 622.0
+offset_left = 8.0
+offset_top = 210.0
+offset_right = 217.0
+offset_bottom = 537.0
 
 [connection signal="pressed" from="Control/closeButton" to="." method="_on_close_button_pressed"]
 [connection signal="text_submitted" from="Control/NewNameInput" to="." method="_on_new_name_input_text_submitted"]

@@ -8,6 +8,8 @@ signal InitialComponentName(ComponentId, InitialComponentName)
 
 #Signaal dat de boolean van het ComponentMenu behandelt.
 signal ComponentMenuStatus(ComponentMenuVisBool, ComponentName)
+signal ComponentFeatureStatus(ComponentFeatureSelBool, ComponentName)
+
 
 #NodeInformatie 
 signal NodeInformation(ComponentName, ApiInput, rawApiData)
