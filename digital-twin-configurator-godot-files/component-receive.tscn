@@ -1,22 +1,103 @@
-[gd_scene load_steps=2 format=3 uid="uid://b17qnt3ppq0kr"]
+[gd_scene load_steps=2 format=3 uid="uid://cphmh8scoelo7"]
 
-[ext_resource type="Script" path="res://scripts/ReceiveComponent.gd" id="1_i30bc"]
+[sub_resource type="GDScript" id="GDScript_6hkvp"]
+script/source = "extends GraphNode
+
+@onready var Line = $Line
+@onready var _componentName : Label = $Line/ComponentName
+@onready var flaskOutput = $Line/FlaskOutput
+
+var ComponentMenuVisBool = false
+var receiver_node_name : String = \"\"
+var NewReceiveNodeName : String = \"\"
+var connectionDict = {}
+var SendComponent
+var json_result
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	SignalHub.connect(\"NewReceiveNodeName\", Callable(self, \"_onInitialiseNode\"))
+	SignalHub.connect(\"connectionDict\", Callable(self, \"_isConnected\"))
+	
+
+#De nieuwe receive node wordt aangemaakt, de meegegeven naam wordt toegewezen en weergegeven.
+func _onInitialiseNode(NewReceiveNodeName):
+	set_name(NewReceiveNodeName)
+	receiver_node_name = get_name()
+	_componentName.text = receiver_node_name
+
+#Er wordt gekeken of de huidige node (receiver_node_name) aanwezig is in connectionDict (waarin alle connections gedefineerd zijn)
+#Vervolgens wordt de sendnode geassocieerd met de receivenode achterhaald. 
+#De functie _accesRawApiData wordt aangeroepen. De API inhoud van de achterhaalde sendnode wordt geraadpleegd
+func _isConnected(connectionDict):
+	print(\"receiver_node_name: \", receiver_node_name)
+	
+	if receiver_node_name not in connectionDict:
+		print(\"an error has occured. Please try to lay the connection an other way\")
+	else:
+		self.SendComponent = connectionDict[receiver_node_name][\"from=\"]
+		SignalHub.connect(\"nodeInformationDict\", Callable(self, \"_accesRawApiData\"))
+
+#Voor verwerking in de flask server wordt de array in aparte integers omgezet in een dictionary.
+func _accesRawApiData(nodeInformationDict):
+	self.json_result = nodeInformationDict[SendComponent][\"Api Data= \"]
+	_convert_string_to_dict(json_result)
+	
+	
+#Voor verwerking in de flask server wordt de array in aparte integers omgezet in een dictionary.
+func _convert_string_to_dict(json_result: Array) -> Dictionary:
+	var data = {}
+
+	for i in range(json_result.size()):
+		data[\"int\" + str(i + 1)] = json_result[i]
+
+	_flaskRequest(data)
+	return data
+
+#De dictionary wordt naar de flask server gepost (Ip adres aanpassen aan de flask server!!!).	
+func _flaskRequest(data):
+	var json = JSON.stringify(data)
+	var headers = [\"Content-Type: application/json\"]
+	#Ip adres aanpassen aan het IP waar flask wordt gehost.
+	$HTTPPost.request(\"http://0.0.0.0/sum\", headers, HTTPClient.METHOD_POST, json)
+
+#Het gerturnede resultaat wordt weergegeven in de scrollbox flaskOutput
+func _on_http_post_request_completed(result, response_code, headers, body):
+	var json_post_result = JSON.parse_string(body.get_string_from_utf8())
+	flaskOutput.text = str(json_post_result)
+
+## Controls
+#Resize
+func _on_resize_request(new_minsize):
+	self.size = new_minsize
+
+#Close    
+func _on_close_request():
+	self.queue_free()
+
+
+func _on_configure_button_pressed():
+	self.ComponentMenuVisBool = true
+	receiver_node_name = get_name()
+	SignalHub.emit_signal(\"ComponentMenuStatus\", ComponentMenuVisBool, receiver_node_name)
+	SignalHub.emit_signal(\"NodeInformation\", receiver_node_name)
+"
 
 [node name="GraphNode" type="GraphNode"]
-anchors_preset = -1
-anchor_left = 0.482
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 0.482
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.264
+offset_left = -121.0
 offset_top = -176.0
-offset_right = 205.736
-offset_bottom = 281.0
+offset_right = 117.0
+offset_bottom = 66.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.988867, 1)
 mouse_filter = 1
-show_close = true
 resizable = true
 slot/0/left_enabled = true
 slot/0/left_type = 0
@@ -36,16 +117,7 @@ slot/1/right_type = 0
 slot/1/right_color = Color(1, 1, 1, 1)
 slot/1/right_icon = null
 slot/1/draw_stylebox = true
-slot/2/left_enabled = false
-slot/2/left_type = 0
-slot/2/left_color = Color(1, 1, 1, 1)
-slot/2/left_icon = null
-slot/2/right_enabled = false
-slot/2/right_type = 0
-slot/2/right_color = Color(1, 1, 1, 1)
-slot/2/right_icon = null
-slot/2/draw_stylebox = true
-script = ExtResource("1_i30bc")
+script = SubResource("GDScript_6hkvp")
 
 [node name="Line" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 30)
@@ -64,24 +136,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="Line2"]
-layout_mode = 2
-text = "Get Average"
-alignment = 0
-
-[node name="TextEdit" type="TextEdit" parent="Line2"]
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-
 [node name="HTTPPost" type="HTTPRequest" parent="."]
 
-[node name="HTTPGet" type="HTTPRequest" parent="."]
-
-[node name="ListViewDatasets" type="ItemList" parent="."]
-layout_mode = 2
-auto_height = true
-
-[connection signal="close_request" from="." to="." method="_on_close_request"]
 [connection signal="resize_request" from="." to="." method="_on_resize_request"]
-[connection signal="pressed" from="Line2/Button" to="." method="_on_button_pressed"]
 [connection signal="request_completed" from="HTTPPost" to="." method="_on_http_post_request_completed"]

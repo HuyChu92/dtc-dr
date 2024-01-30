@@ -1,15 +1,18 @@
 extends Node
 
+#JSON
+signal updateComponents(ComponentId, ComponentName)
 
 #Signaal dat in raster-main wordt meegegeven aan een nieuwe graph-node
-signal NewSendNodeName(NewSendNodeName)
-signal NewReceiveNodeName(NewReceiveNodeName)
+signal InitialComponentName(ComponentId, InitialComponentName)
 
 #Signaal dat de boolean van het ComponentMenu behandelt.
-signal ComponentMenuStatus(ComponentMenuVisBool, sender_node_name)
+signal ComponentMenuStatus(ComponentMenuVisBool, ComponentName)
+signal ComponentFeatureStatus(ComponentFeatureSelBool, ComponentName)
+
 
 #NodeInformatie 
-signal NodeInformation(sender_node_name, ApiInput, rawApiData)
+signal NodeInformation(ComponentName, ApiInput, rawApiData)
 
 #dict van de nodeinformation
 signal nodeInformationDict(nodeInformationDict)
