@@ -24,7 +24,7 @@ class ModelSelector:
         self.X = self.df[features]
         self.Y = self.df[y]
         self.model = (
-            DecisionTreeRegressor() if model == "DecisionTree" else LinearRegression()
+            DecisionTreeRegressor() if model == "Decision Trees" else LinearRegression()
         )
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
             self.X, self.Y, test_size=0.2, random_state=42
