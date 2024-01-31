@@ -1,0 +1,49 @@
+{
+    "created_at": "2024-01-31 01:01:28",
+    "dataset": "D:\\dtc-dr\\digitaltwins\\api\\datasets\\Movie\\Movie.xlsx",
+    "model_parameters": {
+        "activation": "relu",
+        "alpha": 0.0001,
+        "batch_size": "auto",
+        "beta_1": 0.9,
+        "beta_2": 0.999,
+        "early_stopping": false,
+        "epsilon": 1e-08,
+        "hidden_layer_sizes": [
+            100
+        ],
+        "learning_rate": "constant",
+        "learning_rate_init": 0.001,
+        "max_fun": 15000,
+        "max_iter": 200,
+        "momentum": 0.9,
+        "n_iter_no_change": 10,
+        "nesterovs_momentum": true,
+        "power_t": 0.5,
+        "random_state": null,
+        "shuffle": true,
+        "solver": "adam",
+        "tol": 0.0001,
+        "validation_fraction": 0.1,
+        "verbose": false,
+        "warm_start": false
+    },
+    "X": [
+        "Movie_length",
+        "Director_rating",
+        "Critic_rating"
+    ],
+    "y": "Budget",
+    "evaluation": {
+        "train": {
+            "R-squared": -1.0209787803807062,
+            "Mean Squared Error": 638344541734316.8,
+            "Root Mean Squared Error": 25265481.22902702
+        },
+        "test": {
+            "R-squared": -0.9580329954072124,
+            "Mean Squared Error": 598963021491226.2,
+            "Root Mean Squared Error": 24473721.038927168
+        }
+    }
+}

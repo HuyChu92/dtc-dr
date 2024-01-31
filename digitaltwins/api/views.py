@@ -266,7 +266,7 @@ def trainModel(request):
         selected_model,
         scaler
     )
-    evaluation = model.evaluateModel()
+    evaluation = model.meta_info
 
     if save_model:
         file_path = f"{selected_model}_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.pkl"
