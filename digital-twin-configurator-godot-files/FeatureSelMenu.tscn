@@ -1,0 +1,134 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj6rpdmv2bt5a"]
+
+[ext_resource type="Script" path="res://scripts/FeatureSelMenu.gd" id="1_8p633"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fv5sy"]
+font_size = 22
+
+[node name="FeatureSelMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 449.0
+offset_top = 42.0
+offset_right = -147.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8p633")
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 16.0
+offset_right = 534.0
+offset_bottom = 684.0
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 0
+offset_left = -17.0
+offset_right = 540.0
+offset_bottom = 793.0
+
+[node name="closeButton" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 490.0
+offset_top = 14.0
+offset_right = 521.0
+offset_bottom = 45.0
+text = "X
+"
+
+[node name="ComponentNameLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 11.0
+offset_right = 135.0
+offset_bottom = 50.0
+text = "Placeholder"
+label_settings = SubResource("LabelSettings_fv5sy")
+
+[node name="NewNameInput" type="LineEdit" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 5.0
+offset_top = 11.0
+offset_right = 136.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 12
+placeholder_text = "Nieuwe Naam (Enter)"
+flat = true
+
+[node name="InvisNameChangeButton" type="Button" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 175.0
+offset_bottom = 55.0
+flat = true
+
+[node name="modelSelectorLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 95.0
+offset_right = 133.0
+offset_bottom = 121.0
+pivot_offset = Vector2(491, 274)
+text = "Modelkeuze
+"
+
+[node name="OptionButton" type="OptionButton" parent="Control"]
+layout_mode = 0
+offset_left = 306.0
+offset_top = 97.0
+offset_right = 522.0
+offset_bottom = 117.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 175.0
+offset_right = 133.0
+offset_bottom = 201.0
+pivot_offset = Vector2(491, 274)
+text = "Feature Selectie
+"
+
+[node name="featureControl" type="Control" parent="Control"]
+anchors_preset = 0
+offset_left = 10.0
+offset_top = 213.0
+offset_right = 520.0
+offset_bottom = 409.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/featureControl"]
+layout_mode = 0
+offset_right = 511.0
+offset_bottom = 59.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/featureControl/VBoxContainer"]
+layout_mode = 2
+
+[node name="featureId" type="Label" parent="Control/featureControl/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "1"
+
+[node name="featureName" type="Label" parent="Control/featureControl/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Measurement1.Actual"
+
+[node name="featureStatus" type="CheckBox" parent="Control/featureControl/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="start_train_button" type="Button" parent="Control/featureControl/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Train Dataset!"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="Control/closeButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="Control/featureControl/VBoxContainer/HBoxContainer/start_train_button" to="." method="_on_start_train_button_pressed"]

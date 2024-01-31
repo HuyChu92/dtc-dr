@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0lj2rfv6bj0n"]
+[gd_scene load_steps=5 format=3 uid="uid://b0lj2rfv6bj0n"]
 
 [ext_resource type="PackedScene" uid="uid://buo5k04wdm5ql" path="res://ComponentMenu.tscn" id="1_axixm"]
 [ext_resource type="Script" path="res://scripts/raster-main.gd" id="1_ebo5y"]
+[ext_resource type="PackedScene" uid="uid://cj6rpdmv2bt5a" path="res://FeatureSelMenu.tscn" id="3_72hjr"]
 
 [sub_resource type="GDScript" id="GDScript_sl01v"]
 script/source = "extends GraphEdit
@@ -30,12 +31,18 @@ offset_right = 1820.0
 offset_bottom = 980.0
 script = SubResource("GDScript_sl01v")
 
+[node name="FeatureSelMenu" parent="GraphEdit" instance=ExtResource("3_72hjr")]
+layout_mode = 1
+offset_left = 911.0
+offset_right = -358.0
+offset_bottom = -248.0
+
 [node name="ComponentMenu" parent="GraphEdit" instance=ExtResource("1_axixm")]
 layout_mode = 1
-offset_left = 670.0
-offset_top = -36.0
-offset_right = 670.0
-offset_bottom = -36.0
+offset_left = 1500.0
+offset_top = 44.0
+offset_right = -54.0
+offset_bottom = -244.0
 
 [node name="Button-send" type="Button" parent="."]
 layout_mode = 0
@@ -43,18 +50,9 @@ offset_left = 300.0
 offset_top = 9.0
 offset_right = 391.0
 offset_bottom = 41.0
-text = "Add send
+text = "Add Component
 "
-
-[node name="Button-receive" type="Button" parent="."]
-layout_mode = 0
-offset_left = 416.0
-offset_top = 9.0
-offset_right = 550.0
-offset_bottom = 41.0
-text = "Add receive"
 
 [connection signal="connection_request" from="GraphEdit" to="GraphEdit" method="_on_connection_request"]
 [connection signal="disconnection_request" from="GraphEdit" to="GraphEdit" method="_on_disconnection_request"]
 [connection signal="pressed" from="Button-send" to="." method="_on_add_send_comp_button_pressed"]
-[connection signal="pressed" from="Button-receive" to="." method="_on_add_receive_comp_button_pressed"]
