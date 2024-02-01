@@ -22,6 +22,7 @@ from .modelhandler import *
 from datetime import datetime
 from .forms import FileUploadForm
 from pathlib import Path
+from django.conf import settings
 
 
 PREDICTIONS_MAPPING = [
@@ -286,10 +287,15 @@ def fetchDatasets(request):
     Returns:
         _type_: _description_
     """
-    source = r'D:\dtc-dr\digitaltwins\api\datasets'
+    source = os.path.join(settings.BASE_DIR, 'api', 'datasets')
     files = []
-    for file in os.listdir(source):
-        files.append(file)
+
+    for root, dirs, filenames in os.walk(source):
+        for filename in filenames:
+            # Check if the file has a CSV or Excel extension
+            if filename.endswith(".csv") or filename.endswith(".xlsx"):
+                # Append the filename to the list
+                files.append(filename)
 
     return JsonResponse({"files": files})
 
@@ -361,7 +367,7 @@ def dataset_plotimage(request, dataset, imagename):
         # Set the response content type
         response = HttpResponse(image_file.read(), content_type=content_type)
 
-        # Set the content-disposition header to make the browser prompt the user to download the file
-        response['Content-Disposition'] = f'attachment; filename="{imagename}"'
+        # Set the content-disposition header to make the browser display the file inline
+        response['Content-Disposition'] = f'inline; filename="{imagename}"'
 
         return response

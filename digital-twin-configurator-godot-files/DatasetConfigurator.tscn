@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2l2rfla33m88"]
+
+[ext_resource type="Script" path="res://scripts/DatasetConfigurator.gd" id="1_lstxq"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_lstxq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -262.0
+offset_top = 69.0
+offset_right = 140.0
+offset_bottom = 631.0
+
+[node name="Panel" type="Panel" parent="Control"]
+offset_left = 444.0
+offset_top = 19.0
+offset_right = 893.0
+offset_bottom = 539.0
+
+[node name="BtnUpload" type="Button" parent="Control/Panel"]
+offset_left = 41.0
+offset_top = 28.0
+offset_right = 209.0
+offset_bottom = 68.0
+text = "Upload Dataset"
+
+[node name="CorrBtn" type="Button" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 168.0
+offset_right = 236.0
+offset_bottom = 199.0
+text = "Show Correlation Matrix"
+
+[node name="OptionDatasets" type="OptionButton" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 234.0
+offset_top = 98.0
+offset_right = 379.0
+offset_bottom = 131.0
+
+[node name="Label" type="Label" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 102.0
+offset_right = 180.0
+offset_bottom = 133.0
+text = "Select Dataset"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Control/Panel"]
+
+[connection signal="pressed" from="Control/Panel/BtnUpload" to="." method="_on_btn_upload_pressed"]
+[connection signal="pressed" from="Control/Panel/CorrBtn" to="." method="_on_corr_btn_pressed"]

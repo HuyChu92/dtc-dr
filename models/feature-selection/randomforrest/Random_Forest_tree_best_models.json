@@ -1,0 +1,158 @@
+{
+    "Stage1.Output.Measurement0.U.Actual": {
+        "r2_scores_train": 0.44374942726756217,
+        "r2_scores_test": 0.9647990586630222,
+        "selected_feature_indices": [
+            0, 1, 2, 3, 4, 5, 6, 7, 8,
+            9, 10, 11, 12, 13, 14, 15,
+            16, 17, 18, 19, 20, 21, 22,
+            23, 24, 25, 26, 27, 28, 29,
+            30, 31, 32, 33, 34, 35
+        ]
+    },
+    "Stage1.Output.Measurement1.U.Actual": {
+        "r2_scores_train": 0.8255382429100913,
+        "r2_scores_test": 0.9467034360929529,
+        "selected_feature_indices": [
+            0, 1, 2, 3, 5, 8, 9, 10, 11,
+            24, 25, 26, 27, 31, 32, 34
+        ]
+    },
+    "Stage1.Output.Measurement2.U.Actual": {
+        "r2_scores_train": 0.26861775155070755,
+        "r2_scores_test": 0.8182484097678018,
+        "selected_feature_indices": [
+            0, 1, 5, 6, 12, 13, 14, 15,
+            17, 19, 24, 26, 29, 31, 33,
+            34
+        ]
+    },
+    "Stage1.Output.Measurement3.U.Actual": {
+        "r2_scores_train": 0.5626577663170317,
+        "r2_scores_test": 0.8950513496369968,
+        "selected_feature_indices": [
+            0, 6, 7, 8, 10, 11, 18, 21,
+            22, 25, 27, 29, 32, 34
+        ]
+    },
+    "Stage1.Output.Measurement4.U.Actual": {
+        "r2_scores_train": 0.010329161196477199,
+        "r2_scores_test": 0.06074325600806374,
+        "selected_feature_indices": [
+            25, 27
+        ]
+    },
+    "Stage1.Output.Measurement5.U.Actual": {
+        "r2_scores_train": 0.010329161196477199,
+        "r2_scores_test": 0.06074325600806374,
+        "selected_feature_indices": null
+    },
+    "Stage1.Output.Measurement6.U.Actual": {
+        "r2_scores_train": 0.48789040943655826,
+        "r2_scores_test": 0.5700238549993902,
+        "selected_feature_indices": [
+            10, 12, 13, 14, 15, 27, 34
+        ]
+    },
+    "Stage1.Output.Measurement7.U.Actual": {
+        "r2_scores_train": 0.9359652218425671,
+        "r2_scores_test": 0.9936744329932832,
+        "selected_feature_indices": [
+            0, 1, 2, 3, 4, 5, 6, 7, 8,
+            9, 10, 11, 12, 13, 14, 15,
+            16, 17, 18, 19, 20, 21, 22,
+            23, 24, 25, 26, 27, 28, 29,
+            30, 31, 32, 33, 34, 35
+        ]
+    },
+    "Stage1.Output.Measurement8.U.Actual": {
+        "r2_scores_train": 0.8581219181842947,
+        "r2_scores_test": 0.9698711161314029,
+        "selected_feature_indices": [
+            0, 1, 2, 3, 4, 5, 7, 8, 9,
+            10, 11, 12, 13, 14, 15, 18,
+            21, 24, 25, 26, 27, 29, 30,
+            31, 32, 33, 34, 35
+        ]
+    },
+    "Stage1.Output.Measurement9.U.Actual": {
+        "r2_scores_train": 0.9140062347992602,
+        "r2_scores_test": 0.951502551624659,
+        "selected_feature_indices": [
+            0, 1, 3, 8, 9, 10, 11, 12,
+            13, 14, 15, 24, 25, 26, 27,
+            29, 31, 32, 33, 34, 35
+        ]
+    },
+    "Stage1.Output.Measurement10.U.Actual": {
+        "r2_scores_train": 0.24348512816872692,
+        "r2_scores_test": 0.45330550496880617,
+        "selected_feature_indices": [
+            6, 34
+        ]
+    },
+    "Stage1.Output.Measurement11.U.Actual": {
+        "r2_scores_train": 0.9385195671351784,
+        "r2_scores_test": 0.9385195671351784,
+        "selected_feature_indices": [
+            12, 13, 14, 15, 27, 34
+        ]
+    },
+    "Stage1.Output.Measurement12.U.Actual": {
+        "r2_scores_train": 0.6552198539846111,
+        "r2_scores_test": 0.8499055767604909,
+        "selected_feature_indices": [
+            0, 1, 3, 4, 5, 7, 8, 9, 10,
+            11, 12, 13, 14, 15, 19, 21,
+            22, 25, 26, 27, 29, 31, 32,
+            33, 34, 35
+        ]
+    },
+    "Stage1.Output.Measurement13.U.Actual": {
+        "r2_scores_train": 0.802269859339934,
+        "r2_scores_test": 0.9131171147810921,
+        "selected_feature_indices": [
+            0, 3, 8, 10, 11, 24, 25, 26,
+            27, 32, 34
+        ]
+    },
+    "Stage1.Output.Measurement14.U.Actual": {
+        "r2_scores_train": 0.41049891467486077,
+        "r2_scores_test": 0.6088420671449966,
+        "selected_feature_indices": [
+            2, 5, 8, 10, 11, 12, 13, 14,
+            15, 19, 21, 22, 24, 25, 26,
+            27, 32, 34
+        ]
+    },
+    "FirstStage.CombinerOperation.Temperature1.U.Actual": {
+        "r2_scores_train": 0.8872022588160604,
+        "r2_scores_test": 0.9707997577314198,
+        "selected_feature_indices": [
+            0, 1, 2, 3, 7, 8, 9, 10, 11,
+            12, 13, 14, 15, 19, 24, 25,
+            26, 27, 32, 34
+        ]
+    },
+    "FirstStage.CombinerOperation.Temperature2.U.Actual": {
+        "r2_scores_train": 0.9890389651066693,
+        "r2_scores_test": 0.9985513668398365,
+        "selected_feature_indices": [
+            0, 1, 2, 3, 4, 5, 6, 7, 8,
+            9, 10, 11, 12, 13, 14, 15,
+            17, 18, 19, 22, 24, 25, 26,
+            27, 29, 31, 32, 33, 34, 35
+        ]
+    },
+    "FirstStage.CombinerOperation.Temperature3.C.Actual": {
+        "r2_scores_train": 0.5273824374829148,
+        "r2_scores_test": 0.9646743935653697,
+        "selected_feature_indices": [
+            1, 2, 3, 4, 5, 6, 7, 8, 9,
+            10, 11, 12, 13, 14, 15, 16,
+            17, 18, 19, 20, 21, 22, 23,
+            24, 25, 26, 27, 28, 29, 30,
+            31, 32, 33, 34, 35
+        ]
+    }
+}

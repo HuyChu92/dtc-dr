@@ -10,7 +10,6 @@ var interval_enabled = false
 var interval_timer : Timer
 
 # Called when the node enters the scene tree for the first time.
-# Called when the node enters the scene tree for the first time.
 func _ready(): 
 	SignalHub.connect("NewSendNodeName", Callable(self, "_onInitialiseNode"))
 	interval_timer = $Line2/Timer  # Replace with the actual path to your Timer node

@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://b2l2rfla33m88"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="Control"]
+offset_left = 581.0
+offset_top = 125.0
+offset_right = 1030.0
+offset_bottom = 645.0
+
+[node name="UploadBtn" type="Button" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 34.0
+offset_right = 174.0
+offset_bottom = 74.0
+text = "Upload Dataset"
+
+[node name="OptionDatasets" type="OptionButton" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 234.0
+offset_top = 98.0
+offset_right = 379.0
+offset_bottom = 131.0
+
+[node name="Label" type="Label" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 102.0
+offset_right = 180.0
+offset_bottom = 133.0
+text = "Select Dataset"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Control/Panel"]
+
+[connection signal="pressed" from="Control/Panel/UploadBtn" to="Control/Panel/UploadBtn" method="_on_pressed"]
