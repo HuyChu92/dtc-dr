@@ -1,6 +1,6 @@
 {
-    "created_at": "2024-01-31 01:01:28",
-    "dataset": "D:\\dtc-dr\\digitaltwins\\api\\datasets\\Movie\\Movie.xlsx",
+    "created_at": "2024-02-01 18:31:41",
+    "dataset": "D:\\dtc-dr\\digitaltwins\\api\\datasets\\ToyotaCorolla\\ToyotaCorolla.xlsx",
     "model_parameters": {
         "activation": "relu",
         "alpha": 0.0001,
@@ -36,14 +36,14 @@
     "y": "Budget",
     "evaluation": {
         "train": {
-            "R-squared": -1.0209787803807062,
-            "Mean Squared Error": 638344541734316.8,
-            "Root Mean Squared Error": 25265481.22902702
+            "R-squared": 0.469975112172602,
+            "Mean Squared Error": 6939880.891140094,
+            "Root Mean Squared Error": 2634.365367814437
         },
         "test": {
-            "R-squared": -0.9580329954072124,
-            "Mean Squared Error": 598963021491226.2,
-            "Root Mean Squared Error": 24473721.038927168
+            "R-squared": 0.4707673869446173,
+            "Mean Squared Error": 7061439.005198498,
+            "Root Mean Squared Error": 2657.3368256956996
         }
     }
 }

@@ -1,11 +1,11 @@
+Label
+HTTPRequest
+OptionButton
+Panel
 TextureRect
 Sprite2D
 Button
 Control
-HTTPRequest
-Label
-OptionButton
-Panel
 Node
 ItemList
 TextEdit

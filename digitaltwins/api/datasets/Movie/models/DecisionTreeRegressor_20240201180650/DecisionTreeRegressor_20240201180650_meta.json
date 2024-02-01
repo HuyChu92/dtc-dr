@@ -1,0 +1,35 @@
+{
+    "created_at": "2024-02-01 18:06:50",
+    "dataset": "D:\\dtc-dr\\digitaltwins\\api\\datasets\\Movie\\Movie.xlsx",
+    "model_parameters": {
+        "ccp_alpha": 0.0,
+        "criterion": "squared_error",
+        "max_depth": null,
+        "max_features": null,
+        "max_leaf_nodes": null,
+        "min_impurity_decrease": 0.0,
+        "min_samples_leaf": 1,
+        "min_samples_split": 2,
+        "min_weight_fraction_leaf": 0.0,
+        "random_state": null,
+        "splitter": "best"
+    },
+    "X": [
+        "Movie_length",
+        "Director_rating",
+        "Critic_rating"
+    ],
+    "y": "Budget",
+    "evaluation": {
+        "train": {
+            "R-squared": 0.9999999998762574,
+            "Mean Squared Error": 39085.20219999997,
+            "Root Mean Squared Error": 197.69977794625862
+        },
+        "test": {
+            "R-squared": -0.82922197524645,
+            "Mean Squared Error": 559559682518987.94,
+            "Root Mean Squared Error": 23655013.898093317
+        }
+    }
+}

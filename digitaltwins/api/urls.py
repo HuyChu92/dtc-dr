@@ -16,7 +16,8 @@ urlpatterns = [
     path('fetchDatasets/', views.fetchDatasets, name='fetchDatasets'),
     path('uploadDataset/', views.uploadDataset, name='uploadDataset'),
     path('dataset_detail/<str:dataset>', views.dataset_detail, name='dataset_detail'),
-    path('dataset_detail/<str:dataset>/<str:imagename>', views.dataset_plotimage, name='dataset_plotimage')
+    path('dataset_detail/<str:dataset>/<str:imagename>', views.dataset_plotimage, name='dataset_plotimage'),
+    path('fetchModels/<str:dataset>', views.fetchModels, name='fetchModels')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 

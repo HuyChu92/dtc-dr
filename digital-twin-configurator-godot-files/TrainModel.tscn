@@ -1,0 +1,52 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkm3incpo5u3h"]
+
+[ext_resource type="Script" path="res://scripts/TrainModel.gd" id="1_crrnm"]
+
+[node name="TrainModel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_crrnm")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 54.0
+offset_right = 1033.0
+offset_bottom = 628.0
+
+[node name="LabelDataset" type="Label" parent="Panel"]
+offset_left = 33.0
+offset_top = 12.0
+offset_right = 188.0
+offset_bottom = 38.0
+text = "Select Dataset"
+
+[node name="OptionsModel" type="OptionButton" parent="Panel"]
+offset_left = 232.0
+offset_top = 50.0
+offset_right = 388.0
+offset_bottom = 89.0
+
+[node name="OptionsDataset" type="OptionButton" parent="Panel"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 51.0
+offset_right = 189.0
+offset_bottom = 90.0
+
+[node name="LabelModel" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 234.0
+offset_top = 13.0
+offset_right = 389.0
+offset_bottom = 36.0
+text = "Select Model"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="item_selected" from="Panel/OptionsModel" to="." method="_on_options_model_item_selected"]
+[connection signal="item_selected" from="Panel/OptionsDataset" to="." method="_on_options_dataset_item_selected"]

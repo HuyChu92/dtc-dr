@@ -1,0 +1,28 @@
+{
+    "created_at": "2024-02-01 18:06:40",
+    "dataset": "D:\\dtc-dr\\digitaltwins\\api\\datasets\\Movie\\Movie.xlsx",
+    "model_parameters": {
+        "copy_X": true,
+        "fit_intercept": true,
+        "n_jobs": null,
+        "positive": false
+    },
+    "X": [
+        "Movie_length",
+        "Director_rating",
+        "Critic_rating"
+    ],
+    "y": "Budget",
+    "evaluation": {
+        "train": {
+            "R-squared": 0.0033253548678404687,
+            "Mean Squared Error": 314808757905539.0,
+            "Root Mean Squared Error": 17742850.895657636
+        },
+        "test": {
+            "R-squared": -0.019710395889134258,
+            "Mean Squared Error": 311929789334703.56,
+            "Root Mean Squared Error": 17661534.172735494
+        }
+    }
+}

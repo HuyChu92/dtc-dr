@@ -32,7 +32,7 @@ func _on_corr_btn_pressed():
 	http_request_corr.request_completed.connect(_on_request_completed_corr_matrix)
 	http_request_corr.request("http://127.0.0.1:8000/dataset_detail/movie/correlation_matrix.png")
 
-
+#
 #	var selectedDataset = $Control/Panel/OptionDatasets.get_item_text($Control/Panel/OptionDatasets.selected)
 #	print(selectedDataset)
 #	var dataset_splitted = selectedDataset.split(".")

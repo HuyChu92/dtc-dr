@@ -9,6 +9,8 @@ from sklearn.feature_selection import SelectKBest, f_regression
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 import seaborn as sns
+import matplotlib
+matplotlib.use('agg') 
 import matplotlib.pyplot as plt
 import os
 from pathlib import Path

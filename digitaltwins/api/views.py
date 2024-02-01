@@ -391,3 +391,17 @@ def dataset_plotimage(request, dataset, imagename):
     response['Content-Disposition'] = f'inline; filename="{imagename}"'
 
     return response
+
+def fetchModels(request, dataset):
+    # Assuming your images are stored in a 'media' directory within your Django project
+    models_path = os.path.join(settings.BASE_DIR, 'api/datasets', dataset.split('.')[0], "models")
+    files = []
+
+    for root, dirs, filenames in os.walk(models_path):
+        for filename in filenames:
+            # Check if the file has a CSV or Excel extension
+            if filename.endswith(".pkl"):
+                # Append the filename to the list
+                files.append(filename)
+
+    return JsonResponse({"files": files})
