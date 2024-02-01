@@ -27,48 +27,43 @@ var http_request_corr: HTTPRequest
 
 func _on_corr_btn_pressed():
 	# Initialize the HTTPRequest node
-#	http_request_corr = HTTPRequest.new()
-#	add_child(http_request_corr)
-#	http_request_corr.request_completed.connect(_on_request_completed_corr_matrix)
-#	http_request_corr.request("http://127.0.0.1:8000/dataset_detail/movie/correlation_matrix.png")
-	var selectedDataset = $Control/Panel/OptionDatasets.get_item_text($Control/Panel/OptionDatasets.selected)
-	print(selectedDataset)
-	var dataset_splitted = selectedDataset.split(".")
-	var dataset = dataset_splitted[0]
-	print(dataset)
-	var url = "http://127.0.0.1:8000/dataset_detail/{0}/correlation_matrix.png".format({"0": dataset})
-	print(url)
+	http_request_corr = HTTPRequest.new()
+	add_child(http_request_corr)
+	http_request_corr.request_completed.connect(_on_request_completed_corr_matrix)
+	http_request_corr.request("http://127.0.0.1:8000/dataset_detail/movie/correlation_matrix.png")
 
-	# Open the URL in the default web browser
-	OS.shell_open(url)# Replace with function body.
 
-#func _on_request_completed_corr_matrix(result, response_code, headers, body):
-#	# Check if the request was successful (status code 200)
-#	if response_code == 200:
-#		# Load the image into the TextureRect
-#		var image_texture = Image.new()
-#		image_texture.load_png_from_buffer(body)
-#		var texture = ImageTexture.new()
-#		texture.create_from_image(image_texture)
+#	var selectedDataset = $Control/Panel/OptionDatasets.get_item_text($Control/Panel/OptionDatasets.selected)
+#	print(selectedDataset)
+#	var dataset_splitted = selectedDataset.split(".")
+#	var dataset = dataset_splitted[0]
+#	print(dataset)
+#	var url = "http://127.0.0.1:8000/dataset_detail/{0}/correlation_matrix.png".format({"0": dataset})
+#	print(url)
+#
+#	# Open the URL in the default web browser
+#	OS.shell_open(url)# Replace with function body.
+
+func _on_request_completed_corr_matrix(result, response_code, headers, body):
+	# Check if the request was successful (status code 200)
+	if response_code == 200:
+		# Load the image into the TextureRect
+		print(body)
+		var image_texture = Image.new()
+		image_texture.load_png_from_buffer(body)
+		var texture = ImageTexture.new()
+		texture.create_from_image(image_texture)
+
+#		# Create a new TextureRect and add it to the current node
 #		var texture_rect = TextureRect.new()
 #		add_child(texture_rect)
-#		texture_rect.texture = texture
-		
-func _on_request_completed_corr_matrix(result, response_code, headers, body):
-	if response_code == 200:
-		var image = Image.new()
-		var err = image.load_png_from_buffer(body)
-		if err != OK:
-			print("Error loading image: ", err)
-		else:
-			print("loading image: ")
-			var texture = ImageTexture.new()
-			texture.create_from_image(image)
-			
-#			var texture_rect = $TextureRect
-#			texture_rect.texture = texture
-			$Sprite2D.texture = texture
-			
+
+		# Configure the TextureRect
+		$Control/Panel/TextureRect.texture = texture
+#		$Control/Panel/TextureRect.rect_min_size = Vector2(1000, 1000)
+#		$Control/Panel/TextureRect.rect_max_size = Vector2(1000, 1000)
+#		$Control/Panel/TextureRect.expand = true
+
 	
 func _on_btn_upload_pressed():
 	# Define the URL you want to open

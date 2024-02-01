@@ -3,7 +3,7 @@ from rest_framework import viewsets
 from rest_framework import permissions
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse
 from django.shortcuts import get_object_or_404
 
 from rest_framework.decorators import api_view
@@ -350,24 +350,44 @@ def dataset_detail(request, dataset):
     duplicate_count = df.duplicated().sum()
     return JsonResponse({"NaN": int(total_nan_count), "duplicate_count": int(duplicate_count) })
 
+# def dataset_plotimage(request, dataset, imagename):
+#     # Assuming your images are stored in a 'media' directory within your Django project
+#     image_path = os.path.join('api/datasets', dataset.split('.')[0], "plots", imagename)
+
+#     # Check if the file exists
+#     if not os.path.exists(image_path):
+#         return HttpResponse("Image not found", status=404)
+
+#     # Open the file for reading
+#     with open(image_path, 'rb') as image_file:
+#         # Determine the content type based on the file extension
+#         _, extension = os.path.splitext(imagename)
+#         content_type = f'image/{extension.lstrip(".")}'
+
+#         # Set the response content type
+#         response = HttpResponse(image_file.read(), content_type=content_type)
+
+#         # Set the content-disposition header to make the browser display the file inline
+#         response['Content-Disposition'] = f'inline; filename="{imagename}"'
+
+#         return response
+
 def dataset_plotimage(request, dataset, imagename):
     # Assuming your images are stored in a 'media' directory within your Django project
-    image_path = os.path.join('api/datasets', dataset.split('.')[0], "plots", imagename)
+    image_path = os.path.join(settings.BASE_DIR, 'api/datasets', dataset.split('.')[0], "plots", imagename)
 
     # Check if the file exists
     if not os.path.exists(image_path):
-        return HttpResponse("Image not found", status=404)
+        return FileResponse("Image not found", status=404)
 
-    # Open the file for reading
-    with open(image_path, 'rb') as image_file:
-        # Determine the content type based on the file extension
-        _, extension = os.path.splitext(imagename)
-        content_type = f'image/{extension.lstrip(".")}'
+    # Determine the content type based on the file extension
+    _, extension = os.path.splitext(imagename)
+    content_type = f'image/{extension.lstrip(".")}'
 
-        # Set the response content type
-        response = HttpResponse(image_file.read(), content_type=content_type)
+    # Set the response content type
+    response = FileResponse(open(image_path, 'rb'), content_type=content_type)
 
-        # Set the content-disposition header to make the browser display the file inline
-        response['Content-Disposition'] = f'inline; filename="{imagename}"'
+    # Set the content-disposition header to make the browser display the file inline
+    response['Content-Disposition'] = f'inline; filename="{imagename}"'
 
-        return response
+    return response

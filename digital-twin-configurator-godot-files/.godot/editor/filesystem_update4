@@ -1,6 +1,4 @@
-res://scripts/Dataset.gd
-res://scripts/DatasetConfigurator.gd
 res://DatasetConfigurator.tscn
 res://FeatureSelMenu.tscn
 res://component-send.tscn
-res://scripts/SendComponent.gd
+res://scripts/DatasetConfigurator.gd
