@@ -1,6 +1,2 @@
 res://TrainModel.tscn
 res://DatasetConfigurator.tscn
-res://FeatureSelMenu.tscn
-res://component-send.tscn
-res://scripts/TrainModel.gd
-res://scripts/DatasetConfigurator.gd

@@ -258,7 +258,6 @@ def trainModel(request):
     dataset = data["dataset"]
     scaler = data["scaler"]
     save_model = data["save_model"]
-    print(data)
 
     model = ModelSelector(
         dataset,
@@ -269,11 +268,11 @@ def trainModel(request):
     )
     evaluation = model.meta_info
 
-    if save_model:
-        file_path = f"{selected_model}_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.pkl"
-        print(file_path)
-        with open(file_path, 'wb') as file:
-            pickle.dump(model, file)
+    # if save_model:
+    #     file_path = f"{selected_model}_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.pkl"
+    #     print(file_path)
+    #     with open(file_path, 'wb') as file:
+    #         pickle.dump(model, file)
 
     return JsonResponse({"evaluation": evaluation})
 

@@ -17,6 +17,7 @@ from pathlib import Path
 import pickle
 from datetime import datetime
 import json
+from django.conf import settings
 
 
 class ModelSelector:
@@ -30,6 +31,7 @@ class ModelSelector:
     ):
         self.created = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.dataset = dataset
+        print(self.dataset)
         self.scaler = StandardScaler()
         self.df = (
             pd.read_csv(dataset) if "csv" in self.dataset else pd.read_excel(dataset)
@@ -112,7 +114,9 @@ class ModelSelector:
 
         model_path = model_name + "_" + date_string
 
-        base_directory = r"D:\dtc-dr\digitaltwins\api\datasets\Movie\models"
+        # base_directory = r"D:\dtc-dr\digitaltwins\api\datasets\Movie\models"
+        base_directory = os.path.join(settings.BASE_DIR, 'api/datasets', self.dataset.split('\\')[-2], "models")
+        print(base_directory)
         # base_directory = os.path.dirname(os.path.abspath(__file__))
         subdirectory_path = os.path.join(base_directory, model_path)
 

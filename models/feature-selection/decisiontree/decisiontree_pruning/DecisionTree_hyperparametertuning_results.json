@@ -1,0 +1,149 @@
+{
+    "Stage1.Output.Measurement1.U.Actual": {
+        "r2_train": 0.8323446972858511,
+        "r2_test": 0.7503202699634466,
+        "rmse_train": 2.824860669959144,
+        "rmse_test": 3.4595528938596707,
+        "mse_train": 7.979837804682022,
+        "mse_test": 11.968506225412822,
+        "indices": [
+            0,
+            1,
+            2,
+            3,
+            8,
+            9,
+            10,
+            11,
+            24,
+            25,
+            26,
+            31,
+            32
+        ],
+        "best_params": {
+            "max_depth": 10,
+            "min_samples_split": 5,
+            "min_samples_leaf": 2,
+            "max_features": "log2"
+        }
+    },
+    "Stage1.Output.Measurement7.U.Actual": {
+        "r2_train": 0.935940290987576,
+        "r2_test": 0.9133718101658926,
+        "rmse_train": 0.3578440822074569,
+        "rmse_test": 0.41624797734966873,
+        "mse_train": 0.12805238717089715,
+        "mse_test": 0.17326237864769034,
+        "indices": [
+            0,
+            3,
+            8,
+            9,
+            10,
+            12,
+            13,
+            14,
+            15,
+            19,
+            25,
+            26,
+            27,
+            32,
+            34
+        ],
+        "best_params": {
+            "max_depth": 10,
+            "min_samples_split": 10,
+            "min_samples_leaf": 4,
+            "max_features": "log2"
+        }
+    },
+    "Stage1.Output.Measurement11.U.Actual": {
+        "r2_train": 0.954027350379746,
+        "r2_test": 0.926082300401222,
+        "rmse_train": 0.5448621611289949,
+        "rmse_test": 0.6928638024954844,
+        "mse_train": 0.29687477463015877,
+        "mse_test": 0.48006024880850157,
+        "indices": [
+            8,
+            10,
+            12,
+            13,
+            14,
+            15,
+            19,
+            25,
+            27,
+            32,
+            33,
+            34
+        ],
+        "best_params": {
+            "max_depth": 10,
+            "min_samples_split": 10,
+            "min_samples_leaf": 4,
+            "max_features": "log2"
+        }
+    },
+    "FirstStage.CombinerOperation.Temperature1.U.Actual": {
+        "r2_train": 0.9385802415206407,
+        "r2_test": 0.8878078937865316,
+        "rmse_train": 1.4035647229346253,
+        "rmse_test": 1.907378141341805,
+        "mse_train": 1.9699939314665518,
+        "mse_test": 3.6380913740685186,
+        "indices": [
+            0,
+            1,
+            3,
+            8,
+            9,
+            10,
+            11,
+            19,
+            24,
+            25,
+            26,
+            27,
+            32
+        ],
+        "best_params": {
+            "max_depth": 10,
+            "min_samples_split": 10,
+            "min_samples_leaf": 4,
+            "max_features": "sqrt"
+        }
+    },
+    "FirstStage.CombinerOperation.Temperature2.U.Actual": {
+        "r2_train": 0.9745464156953445,
+        "r2_test": 0.9420491911682302,
+        "rmse_train": 2.9645339027813336,
+        "rmse_test": 4.468786599367222,
+        "mse_train": 8.788461260739926,
+        "mse_test": 19.970053670684063,
+        "indices": [
+            0,
+            1,
+            3,
+            7,
+            8,
+            9,
+            10,
+            11,
+            24,
+            25,
+            26,
+            27,
+            31,
+            32
+        ],
+        "best_params": {
+            "max_depth": 10,
+            "min_samples_split": 5,
+            "min_samples_leaf": 2,
+            "max_features": "log2"
+        }
+    }
+}

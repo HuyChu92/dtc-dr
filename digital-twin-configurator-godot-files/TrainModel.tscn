@@ -19,6 +19,7 @@ offset_right = 1033.0
 offset_bottom = 628.0
 
 [node name="LabelDataset" type="Label" parent="Panel"]
+layout_mode = 0
 offset_left = 33.0
 offset_top = 12.0
 offset_right = 188.0
@@ -26,6 +27,7 @@ offset_bottom = 38.0
 text = "Select Dataset"
 
 [node name="OptionsModel" type="OptionButton" parent="Panel"]
+layout_mode = 0
 offset_left = 232.0
 offset_top = 50.0
 offset_right = 388.0

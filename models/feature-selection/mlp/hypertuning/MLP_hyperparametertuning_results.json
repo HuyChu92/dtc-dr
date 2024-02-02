@@ -1,0 +1,42 @@
+{
+    "Stage1.Output.Measurement1.U.Actual": {
+        "r2_train": 0.559095397910081,
+        "r2_test": 0.5362106960611053,
+        "rmse_train": 4.5810043161987135,
+        "rmse_test": 4.71507598860896,
+        "mse_train": 20.98560054503124,
+        "mse_test": 22.231941578356757
+    },
+    "Stage1.Output.Measurement7.U.Actual": {
+        "r2_train": 0.663035240975211,
+        "r2_test": 0.65884289006663,
+        "rmse_train": 0.8207173231828263,
+        "rmse_test": 0.8260374355362614,
+        "mse_train": 0.6735769245723837,
+        "mse_test": 0.6823378449073232
+    },
+    "Stage1.Output.Measurement11.U.Actual": {
+        "r2_train": 0.8880516437316119,
+        "r2_test": 0.9016098834625897,
+        "rmse_train": 0.8502482403564102,
+        "rmse_test": 0.7993728414146171,
+        "mse_train": 0.7229220702291719,
+        "mse_test": 0.6389969395912785
+    },
+    "FirstStage.CombinerOperation.Temperature1.U.Actual": {
+        "r2_train": 0.7809081360995676,
+        "r2_test": 0.7650708139458573,
+        "rmse_train": 2.650888841475032,
+        "rmse_test": 2.7600956821264044,
+        "mse_train": 7.027211649856838,
+        "mse_test": 7.6181281744928215
+    },
+    "FirstStage.CombinerOperation.Temperature2.U.Actual": {
+        "r2_train": 0.8616511509253468,
+        "r2_test": 0.8662700091432367,
+        "rmse_train": 6.91145879351052,
+        "rmse_test": 6.788507037272135,
+        "mse_train": 47.768262654393894,
+        "mse_test": 46.08382779509329
+    }
+}
