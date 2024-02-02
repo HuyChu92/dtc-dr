@@ -1,11 +1,11 @@
 {
     "Stage1.Output.Measurement1.U.Actual": {
-        "r2_train": 0.8323446972858511,
-        "r2_test": 0.7503202699634466,
-        "rmse_train": 2.824860669959144,
-        "rmse_test": 3.4595528938596707,
-        "mse_train": 7.979837804682022,
-        "mse_test": 11.968506225412822,
+        "r2_train": 0.8198926647752224,
+        "r2_test": 0.7583727370665861,
+        "rmse_train": 2.92788547604021,
+        "rmse_test": 3.403308349222617,
+        "mse_train": 8.572513360807209,
+        "mse_test": 11.582507719888374,
         "indices": [
             0,
             1,
@@ -24,17 +24,17 @@
         "best_params": {
             "max_depth": 10,
             "min_samples_split": 5,
-            "min_samples_leaf": 2,
-            "max_features": "log2"
+            "min_samples_leaf": 4,
+            "max_features": "sqrt"
         }
     },
     "Stage1.Output.Measurement7.U.Actual": {
-        "r2_train": 0.935940290987576,
-        "r2_test": 0.9133718101658926,
-        "rmse_train": 0.3578440822074569,
-        "rmse_test": 0.41624797734966873,
-        "mse_train": 0.12805238717089715,
-        "mse_test": 0.17326237864769034,
+        "r2_train": 0.9109606655460535,
+        "r2_test": 0.8858440397620619,
+        "rmse_train": 0.42188327752090216,
+        "rmse_test": 0.4778282387492898,
+        "mse_train": 0.17798549985177856,
+        "mse_test": 0.2283198257462483,
         "indices": [
             0,
             3,
@@ -54,18 +54,18 @@
         ],
         "best_params": {
             "max_depth": 10,
-            "min_samples_split": 10,
+            "min_samples_split": 5,
             "min_samples_leaf": 4,
-            "max_features": "log2"
+            "max_features": "sqrt"
         }
     },
     "Stage1.Output.Measurement11.U.Actual": {
-        "r2_train": 0.954027350379746,
-        "r2_test": 0.926082300401222,
-        "rmse_train": 0.5448621611289949,
-        "rmse_test": 0.6928638024954844,
-        "mse_train": 0.29687477463015877,
-        "mse_test": 0.48006024880850157,
+        "r2_train": 0.9254905323339461,
+        "r2_test": 0.9283406522339465,
+        "rmse_train": 0.6936535471500762,
+        "rmse_test": 0.6821974269976361,
+        "mse_train": 0.481155243473883,
+        "mse_test": 0.465393329402195,
         "indices": [
             8,
             10,
@@ -81,19 +81,19 @@
             34
         ],
         "best_params": {
-            "max_depth": 10,
+            "max_depth": 5,
             "min_samples_split": 10,
-            "min_samples_leaf": 4,
+            "min_samples_leaf": 2,
             "max_features": "log2"
         }
     },
     "FirstStage.CombinerOperation.Temperature1.U.Actual": {
-        "r2_train": 0.9385802415206407,
-        "r2_test": 0.8878078937865316,
-        "rmse_train": 1.4035647229346253,
-        "rmse_test": 1.907378141341805,
-        "mse_train": 1.9699939314665518,
-        "mse_test": 3.6380913740685186,
+        "r2_train": 0.9347086196389922,
+        "r2_test": 0.8943237775111379,
+        "rmse_train": 1.4471259025948133,
+        "rmse_test": 1.8511614215710155,
+        "mse_train": 2.0941733779608533,
+        "mse_test": 3.426798608712823,
         "indices": [
             0,
             1,
@@ -112,17 +112,17 @@
         "best_params": {
             "max_depth": 10,
             "min_samples_split": 10,
-            "min_samples_leaf": 4,
+            "min_samples_leaf": 1,
             "max_features": "sqrt"
         }
     },
     "FirstStage.CombinerOperation.Temperature2.U.Actual": {
-        "r2_train": 0.9745464156953445,
-        "r2_test": 0.9420491911682302,
-        "rmse_train": 2.9645339027813336,
-        "rmse_test": 4.468786599367222,
-        "mse_train": 8.788461260739926,
-        "mse_test": 19.970053670684063,
+        "r2_train": 0.9611700627839832,
+        "r2_test": 0.9567761484641685,
+        "rmse_train": 3.6615527229123948,
+        "rmse_test": 3.8594160314154555,
+        "mse_train": 13.406968342667172,
+        "mse_test": 14.895092103546625,
         "indices": [
             0,
             1,
@@ -141,8 +141,8 @@
         ],
         "best_params": {
             "max_depth": 10,
-            "min_samples_split": 5,
-            "min_samples_leaf": 2,
+            "min_samples_split": 2,
+            "min_samples_leaf": 4,
             "max_features": "log2"
         }
     }
