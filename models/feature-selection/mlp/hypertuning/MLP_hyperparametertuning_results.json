@@ -1,42 +1,86 @@
 {
     "Stage1.Output.Measurement1.U.Actual": {
-        "r2_train": 0.3778400832212304,
-        "r2_test": 0.3291589479284692,
-        "rmse_train": 5.441760186815198,
-        "rmse_test": 5.670719265647798,
-        "mse_train": 29.612753930806978,
-        "mse_test": 32.1570569897891
+        "r2_train": 0.5640784622244641,
+        "r2_test": 0.5483650739797002,
+        "rmse_train": 4.555043706449615,
+        "rmse_test": 4.6528825686428235,
+        "mse_train": 20.748423167666243,
+        "mse_test": 21.64931619758024,
+        "best_param": {
+            "hidden_layer_sizes": [
+                100
+            ],
+            "activation": "relu",
+            "alpha": 0.0001,
+            "learning_rate": "constant"
+        }
     },
     "Stage1.Output.Measurement7.U.Actual": {
-        "r2_train": 0.7260780765706775,
-        "r2_test": 0.7165344361583662,
-        "rmse_train": 0.7399710941641656,
-        "rmse_test": 0.7529613254340369,
-        "mse_train": 0.5475572201985125,
-        "mse_test": 0.5669507575993817
+        "r2_train": 0.7253928173365942,
+        "r2_test": 0.7311965089744075,
+        "rmse_train": 0.7408960936761149,
+        "rmse_test": 0.7332295661132286,
+        "mse_train": 0.5489270216245263,
+        "mse_test": 0.5376255966225936,
+        "best_param": {
+            "hidden_layer_sizes": [
+                100,
+                100
+            ],
+            "activation": "tanh",
+            "alpha": 0.001,
+            "learning_rate": "invscaling"
+        }
     },
     "Stage1.Output.Measurement11.U.Actual": {
-        "r2_train": 0.8879133023139734,
-        "r2_test": 0.8998790566324595,
-        "rmse_train": 0.8507734299809515,
-        "rmse_test": 0.8063732605858858,
-        "mse_train": 0.7238154291615531,
-        "mse_test": 0.6502378353879129
+        "r2_train": 0.8834213604793354,
+        "r2_test": 0.8949146859640221,
+        "rmse_train": 0.867653599019029,
+        "rmse_test": 0.8261229074069163,
+        "mse_train": 0.752822767890674,
+        "mse_test": 0.6824790581424565,
+        "best_param": {
+            "hidden_layer_sizes": [
+                100,
+                100
+            ],
+            "activation": "tanh",
+            "alpha": 0.0001,
+            "learning_rate": "constant"
+        }
     },
     "FirstStage.CombinerOperation.Temperature1.U.Actual": {
-        "r2_train": 0.7617765338057549,
-        "r2_test": 0.742934515444771,
-        "rmse_train": 2.7642076318411997,
-        "rmse_test": 2.8872044286783263,
-        "mse_train": 7.640843831929133,
-        "mse_test": 8.33594941297974
+        "r2_train": 0.6356227926625702,
+        "r2_test": 0.625175444619271,
+        "rmse_train": 3.418644909461444,
+        "rmse_test": 3.486339431466016,
+        "mse_train": 11.687133016986644,
+        "mse_test": 12.154562631394784,
+        "best_param": {
+            "hidden_layer_sizes": [
+                50,
+                50
+            ],
+            "activation": "relu",
+            "alpha": 0.0001,
+            "learning_rate": "constant"
+        }
     },
     "FirstStage.CombinerOperation.Temperature2.U.Actual": {
-        "r2_train": 0.8439518756883562,
-        "r2_test": 0.8404267383154829,
-        "rmse_train": 7.340256295676372,
-        "rmse_test": 7.41549123921988,
-        "mse_train": 53.87936248621662,
-        "mse_test": 54.989510318946785
+        "r2_train": 0.8223918627212168,
+        "r2_test": 0.8238314818277759,
+        "rmse_train": 7.830930643082537,
+        "rmse_test": 7.791552758914223,
+        "mse_train": 61.32347473676907,
+        "mse_test": 60.70829439494384,
+        "best_param": {
+            "hidden_layer_sizes": [
+                50,
+                50
+            ],
+            "activation": "relu",
+            "alpha": 0.01,
+            "learning_rate": "adaptive"
+        }
     }
 }
