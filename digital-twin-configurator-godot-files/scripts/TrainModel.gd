@@ -1,6 +1,7 @@
 extends Node
 var http_request = HTTPRequest.new()
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$HTTPRequest.request_completed.connect(_on_request_completed)
@@ -11,6 +12,11 @@ func _ready():
 	add_child(http_request)
 	http_request.request_completed.connect(_on_request_completed_models)
 	http_request.request("http://127.0.0.1:8000/fetchModels/movie")
+	for num in range(1,10):
+		print(num)
+		var checkBox = CheckBox.new()
+		checkBox.name = str(num)
+		$Panel/ScrollFeature.add_child(checkBox)
 
 func _on_request_completed(result, response_code, headers, body):
 	var json = JSON.parse_string(body.get_string_from_utf8())

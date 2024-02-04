@@ -48,6 +48,13 @@ offset_right = 389.0
 offset_bottom = 36.0
 text = "Select Model"
 
+[node name="ScrollFeature" type="HScrollBar" parent="Panel"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 120.0
+offset_right = 609.0
+offset_bottom = 542.0
+
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [connection signal="item_selected" from="Panel/OptionsModel" to="." method="_on_options_model_item_selected"]

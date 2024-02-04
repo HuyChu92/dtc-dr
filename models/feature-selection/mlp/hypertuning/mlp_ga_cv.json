@@ -1,0 +1,32 @@
+{
+    "Stage1.Output.Measurement1.U.Actual": {
+        "mean_r2_scores_train": 0.6009508485312154,
+        "mean_mse_scores_train": 19.028768119862388,
+        "mean_r2_scores_test": 0.5932103012174366,
+        "mean_mse_scores_test": 19.3549120151206
+    },
+    "Stage1.Output.Measurement7.U.Actual": {
+        "mean_r2_scores_train": 0.7928185871813348,
+        "mean_mse_scores_train": 0.41435178946188567,
+        "mean_r2_scores_test": 0.7962124415648272,
+        "mean_mse_scores_test": 0.40650640555346157
+    },
+    "Stage1.Output.Measurement11.U.Actual": {
+        "mean_r2_scores_train": 0.9006027174068736,
+        "mean_mse_scores_train": 0.6430540921068151,
+        "mean_r2_scores_test": 0.8919796649963262,
+        "mean_mse_scores_test": 0.6959854887835978
+    },
+    "FirstStage.CombinerOperation.Temperature1.U.Actual": {
+        "mean_r2_scores_train": 0.8366460863145939,
+        "mean_mse_scores_train": 5.246811505808955,
+        "mean_r2_scores_test": 0.8040991091531868,
+        "mean_mse_scores_test": 6.374093810616359
+    },
+    "FirstStage.CombinerOperation.Temperature2.U.Actual": {
+        "mean_r2_scores_train": 0.8668090925203377,
+        "mean_mse_scores_train": 45.94512568210191,
+        "mean_r2_scores_test": 0.861492269410879,
+        "mean_mse_scores_test": 47.899154760510065
+    }
+}
