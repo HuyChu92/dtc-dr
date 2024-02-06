@@ -143,3 +143,12 @@ func _on_start_train_button_pressed():
 	
 
 	$HTTPRequest.request(url, headers, HTTPClient.METHOD_POST, JSON.stringify(postBody))
+
+
+func _on_http_request_request_completed(result, response_code, headers, body):
+	var json = JSON.parse_string(body.get_string_from_utf8())
+	var evaluation = json.evaluation.evaluation.test
+	var r2 = evaluation["R-squared"]
+	var mse = evaluation["Mean Squared Error"]
+	var rmse = evaluation["Root Mean Squared Error"]
+	print("r2: ", r2, " Mean Square Error: ", mse, " Root Mean Square Error: ", rmse)

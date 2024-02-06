@@ -14,7 +14,7 @@ extends GraphNode
 var icon_files = ["robo-arm", "warehouse-export", "warehouse-import", "warehouse"]
 
 #HTTPRequest voor Datasets
-@onready var http_request = $HTTPRequest
+@onready var http_request = $HTTPRequestComponent
 
 
 # Menu B

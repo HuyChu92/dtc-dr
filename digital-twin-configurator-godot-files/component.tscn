@@ -140,7 +140,7 @@ text = "Change Dataset"
 [node name="OptionDataset" type="OptionButton" parent="Line2/DatasetSelBox"]
 layout_mode = 2
 
-[node name="HTTPRequest" type="HTTPRequest" parent="."]
+[node name="HTTPRequestComponent" type="HTTPRequest" parent="."]
 
 [connection signal="resize_request" from="." to="." method="_on_resize_request"]
 [connection signal="pressed" from="Line/ConfigureButton" to="." method="_on_configure_button_pressed"]
@@ -149,4 +149,4 @@ layout_mode = 2
 [connection signal="text_submitted" from="Line2/HBoxContainer2/HBoxContainer/newNameEdit" to="." method="_on_new_name_edit_text_submitted"]
 [connection signal="pressed" from="Line2/FeatureSelBox/ConfigureFeaturesButton" to="." method="_on_configure_features_button_pressed"]
 [connection signal="item_selected" from="Line2/DatasetSelBox/OptionDataset" to="." method="_on_option_dataset_item_selected"]
-[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="request_completed" from="HTTPRequestComponent" to="." method="_on_http_request_request_completed"]

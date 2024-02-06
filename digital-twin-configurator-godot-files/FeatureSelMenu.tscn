@@ -196,3 +196,4 @@ size_flags_horizontal = 8
 
 [connection signal="pressed" from="HBoxContainer/closeButton" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="train_dataset_container/start_train_button" to="." method="_on_start_train_button_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
