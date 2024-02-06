@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://qcsdym220ofv"]
+[gd_scene load_steps=4 format=3 uid="uid://qcsdym220ofv"]
 
 [ext_resource type="Script" path="res://scripts/Component.gd" id="1_tdwr8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yxrmo"]
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_hsevu"]
+font_size = 18
 
 [node name="GraphNode" type="GraphNode"]
 anchors_preset = 8
@@ -50,27 +56,97 @@ script = ExtResource("1_tdwr8")
 layout_mode = 2
 
 [node name="Line" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
 [node name="ComponentName" type="Label" parent="Line"]
 layout_mode = 2
 
 [node name="ConfigureButton" type="Button" parent="Line"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 tooltip_text = "Configure this component"
 text = "Configure"
 
-[node name="ConfigureFeaturesButton" type="Button" parent="Line"]
+[node name="TextureRect" type="TextureRect" parent="Line"]
+layout_mode = 2
+size_flags_horizontal = 10
+stretch_mode = 3
+
+[node name="Line2" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ComponentAppearence" type="Label" parent="Line2"]
+layout_mode = 2
+text = "Visual Settings:"
+label_settings = SubResource("LabelSettings_yxrmo")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Line2"]
+layout_mode = 2
+
+[node name="ChangeIconLabel" type="Label" parent="Line2/HBoxContainer2"]
+layout_mode = 2
+text = "Change Icon"
+
+[node name="ConfigureComponentIcon" type="OptionButton" parent="Line2/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Line2/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ChangeNameLabel" type="Label" parent="Line2/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+text = "Change Name"
+
+[node name="ChangeNameButton" type="Button" parent="Line2/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+tooltip_text = "Configure this component"
+text = "Name
+"
+
+[node name="newNameEdit" type="LineEdit" parent="Line2/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Data Settings" type="Label" parent="Line2"]
+layout_mode = 2
+text = "Data Settings:"
+label_settings = SubResource("LabelSettings_hsevu")
+
+[node name="FeatureSelBox" type="HBoxContainer" parent="Line2"]
+layout_mode = 2
+
+[node name="ChangeIconFeatures" type="Label" parent="Line2/FeatureSelBox"]
+layout_mode = 2
+text = "Change Features"
+
+[node name="ConfigureFeaturesButton" type="Button" parent="Line2/FeatureSelBox"]
 layout_mode = 2
 size_flags_horizontal = 0
 tooltip_text = "Configure this component"
 text = "Feature Sel."
 
-[node name="Line2" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(0, 90)
+[node name="DatasetSelBox" type="HBoxContainer" parent="Line2"]
 layout_mode = 2
+
+[node name="ChangeDataset" type="Label" parent="Line2/DatasetSelBox"]
+layout_mode = 2
+text = "Change Dataset"
+
+[node name="OptionDataset" type="OptionButton" parent="Line2/DatasetSelBox"]
+layout_mode = 2
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [connection signal="resize_request" from="." to="." method="_on_resize_request"]
 [connection signal="pressed" from="Line/ConfigureButton" to="." method="_on_configure_button_pressed"]
-[connection signal="pressed" from="Line/ConfigureFeaturesButton" to="." method="_on_configure_features_button_pressed"]
+[connection signal="item_selected" from="Line2/HBoxContainer2/ConfigureComponentIcon" to="." method="_on_configure_component_icon_item_selected"]
+[connection signal="pressed" from="Line2/HBoxContainer2/HBoxContainer/ChangeNameButton" to="." method="_on_change_name_button_pressed"]
+[connection signal="text_submitted" from="Line2/HBoxContainer2/HBoxContainer/newNameEdit" to="." method="_on_new_name_edit_text_submitted"]
+[connection signal="pressed" from="Line2/FeatureSelBox/ConfigureFeaturesButton" to="." method="_on_configure_features_button_pressed"]
+[connection signal="item_selected" from="Line2/DatasetSelBox/OptionDataset" to="." method="_on_option_dataset_item_selected"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]

@@ -30,8 +30,6 @@ func add_node(type):
 	var new_component_id = umpteenthNewComponent
 	new_component.name = "component_" + str(new_component_id)
 	
-	
-	
 	#Graph.add_child(type.instantiate())
 
 #(Add component knop)

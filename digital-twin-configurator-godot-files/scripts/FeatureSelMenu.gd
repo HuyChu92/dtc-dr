@@ -1,8 +1,11 @@
-extends Control
+extends GraphNode
 
-@onready var _menu : Control = $Control
-@onready var _componentNameLabel : Label = $Control/ComponentNameLabel
-@onready var model_option : OptionButton = $Control/OptionButton
+@onready var menuGraphNode = self
+
+
+@onready var _componentNameLabel : Label = $HBoxContainer/ComponentNameLabel
+@onready var model_option : OptionButton = $train_dataset_container/OptionButton
+@onready var vertical_container = $featureControl
 
 var ComponentFeatureSelBool = false
 var ComponentName
@@ -31,15 +34,17 @@ var features = [
 	"FirstStage.CombinerOperation.Temperature3.C.Actual",
 ]
 
-var selectedFeatures = []
+var selectedXFeatures = []
+var selectedYFeatures : String = ""
+
 var selected_model_option
 
 # Get the reference to the VerticalBoxContainer
-@onready var vertical_container = $Control/featureControl/VBoxContainer
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_menu.visible = ComponentFeatureSelBool
+	menuGraphNode.visible = ComponentFeatureSelBool
 	SignalHub.connect("ComponentFeatureStatus", Callable(self, "_on_configure_features_button_pressed"))
 	_init_model_options()
 	_generate_features()
@@ -62,26 +67,49 @@ func _generate_features():
 		var id_label = Label.new()
 		id_label.text = str(features.find(feature))
 		horizontal_container.add_child(id_label)
+		id_label.size_flags_horizontal = 0
+		id_label.size_flags_vertical = 4
 	
 		var name_label = Label.new()
 		name_label.text = feature
 		horizontal_container.add_child(name_label)
+		name_label.size_flags_horizontal = 3
+		name_label.size_flags_vertical = 4
 	
-		var checkbutton = CheckButton.new()
-		var callable = Callable(self, "_on_checkbutton_toggled")
-		callable = callable.bind(feature)
-		checkbutton.connect("toggled", callable)
-		horizontal_container.add_child(checkbutton)
+		var Xcheckbutton = CheckButton.new()
+		var Ycheckbutton = CheckButton.new()
+		
+		var callX = Callable(self, "_on_checkbutton_X_toggled")
+		callX = callX.bind(feature)
+		Xcheckbutton.connect("toggled", callX)
+		horizontal_container.add_child(Xcheckbutton)
+		Xcheckbutton.size_flags_horizontal = 3
+		Xcheckbutton.size_flags_vertical = 4
 
 
-func _on_checkbutton_toggled(checked, feature):
-	if checked:
-		selectedFeatures.append(feature)
+		var callY = Callable(self, "_on_checkbutton_Y_toggled")
+		callY = callY.bind(feature)
+		Ycheckbutton.connect("toggled", callY)
+		horizontal_container.add_child(Ycheckbutton)
+		Ycheckbutton.size_flags_horizontal = 8
+		Ycheckbutton.size_flags_vertical = 1
+
+
+func _on_checkbutton_X_toggled(checked, feature):
+	if checked and feature not in selectedYFeatures:
+		selectedXFeatures.append(feature)
 		pass
 	else:
-		selectedFeatures.erase(feature)
+		selectedXFeatures.erase(feature)
 		pass
-	print(selectedFeatures)
+	
+func _on_checkbutton_Y_toggled(checked, feature):
+	if checked and feature not in selectedXFeatures:
+		selectedYFeatures = feature
+		pass
+	else:
+		#selectedYFeatures.erase(feature)
+		pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -89,21 +117,22 @@ func _process(delta):
 	pass
 	
 func _on_configure_features_button_pressed(ComponentFeatureSelBool, ComponentName):
-	_menu.visible = ComponentFeatureSelBool
+	menuGraphNode.visible = ComponentFeatureSelBool
 	_componentNameLabel.text = ComponentName
 
 func _on_close_button_pressed():
 	self.ComponentFeatureSelBool = false
-	_menu.visible = ComponentFeatureSelBool
+	menuGraphNode.visible = ComponentFeatureSelBool
 
 func _on_start_train_button_pressed():
+	#selectedYFeatures = str(selectedYFeatures)
 	var selectedModel = model_option.get_item_text(model_option.selected)
-	print(model_option.get_item_text(model_option.selected),selectedFeatures)
+	print(model_option.get_item_text(model_option.selected),selectedXFeatures,selectedYFeatures)
 	
 	var postBody : Dictionary = {
 	  "dataset": "C:\\Users\\scrae\\Documents\\Zuyd\\2023-2024\\dtc-dr\\data-analyse\\continuous_factory_process.csv",
-	  "features": selectedFeatures,
-	  "y": "Stage1.Output.Measurement11.U.Actual",
+	  "features": selectedXFeatures,
+	  "y": selectedYFeatures,
 	  "model": selectedModel,
 	  "scaler": false,
 	  "save_model": true
