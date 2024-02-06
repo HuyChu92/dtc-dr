@@ -268,12 +268,6 @@ def trainModel(request):
     )
     evaluation = model.meta_info
 
-    # if save_model:
-    #     file_path = f"{selected_model}_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.pkl"
-    #     print(file_path)
-    #     with open(file_path, 'wb') as file:
-    #         pickle.dump(model, file)
-
     return JsonResponse({"evaluation": evaluation})
 
 @api_view(["GET"])
@@ -376,6 +370,27 @@ def dataset_plotimage(request, dataset, imagename):
     # Assuming your images are stored in a 'media' directory within your Django project
     image_path = os.path.join(settings.BASE_DIR, 'api/datasets', dataset.split('.')[0], "plots", imagename)
 
+    # Check if the file exists
+    if not os.path.exists(image_path):
+        return FileResponse("Image not found", status=404)
+
+    # Determine the content type based on the file extension
+    _, extension = os.path.splitext(imagename)
+    content_type = f'image/{extension.lstrip(".")}'
+
+    # Set the response content type
+    response = FileResponse(open(image_path, 'rb'), content_type=content_type)
+
+    # Set the content-disposition header to make the browser display the file inline
+    response['Content-Disposition'] = f'inline; filename="{imagename}"'
+
+    return response
+
+
+def fetchScatterplot(request, dataset, model, imagename):
+    # Assuming your images are stored in a 'media' directory within your Django project
+    image_path = os.path.join(settings.BASE_DIR, 'api/datasets', dataset.split('.')[0], 'models', model, imagename)
+    print(image_path)
     # Check if the file exists
     if not os.path.exists(image_path):
         return FileResponse("Image not found", status=404)

@@ -10,7 +10,8 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 import seaborn as sns
 import matplotlib
-matplotlib.use('agg') 
+
+matplotlib.use("agg")
 import matplotlib.pyplot as plt
 import os
 from pathlib import Path
@@ -31,7 +32,7 @@ class ModelSelector:
     ):
         self.created = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.dataset = dataset
-        print(self.dataset)
+        self.model_path = ""
         self.scaler = StandardScaler()
         self.df = (
             pd.read_csv(dataset) if "csv" in self.dataset else pd.read_excel(dataset)
@@ -48,7 +49,7 @@ class ModelSelector:
             self.model = RandomForestRegressor(n_estimators=100)
         elif model == "Neural Network":
             self.model = MLPRegressor()
-   
+
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(
             self.X, self.Y, test_size=0.2, random_state=42
         )
@@ -56,6 +57,8 @@ class ModelSelector:
         self.corr_df = None
         self.trained_parameters = self.model.get_params()
         self.meta_info = None
+        self.scatter_train = ""
+        self.scatter_test = ""
         self.saveModel()
 
     def evaluateModel(self):
@@ -77,11 +80,13 @@ class ModelSelector:
                 "R-squared": train_r2_score,
                 "Mean Squared Error": train_mse,
                 "Root Mean Squared Error": train_rmse,
+                "Scatter-train": self.scatter_train,
             },
             "test": {
                 "R-squared": r2_score,
                 "Mean Squared Error": mse,
                 "Root Mean Squared Error": rmse,
+                "Scatter-test": self.scatter_test,
             },
         }
 
@@ -89,21 +94,24 @@ class ModelSelector:
 
     def createScatterPlot(self, subdirectory_path):
         y_train_predicted = self.model.predict(self.X_train)
-        plt.scatter(self.y_train, y_train_predicted, color='blue', alpha=0.5)
-        plt.title('Actual vs. Predicted Values (Training Set)')
-        plt.xlabel('Actual Values')
-        plt.ylabel('Predicted Values')
+        plt.scatter(self.y_train, y_train_predicted, color="blue", alpha=0.5)
+        plt.title("Actual vs. Predicted Values (Training Set)")
+        plt.xlabel("Actual Values")
+        plt.ylabel("Predicted Values")
         scatter_train = f"scatterplot-train.png"
+        dataset = self.dataset.split('\\')[-1].split('.')[0]
+        self.scatter_train = f"http://127.0.0.1:8000/fetchScatterplot/{dataset}/{self.model_path}/scatterplot-train.png"
         file_path_scatter_train = os.path.join(subdirectory_path, scatter_train)
         plt.savefig(file_path_scatter_train)  # Save the plot as an image
 
         y_test_predicted = self.model.predict(self.X_test)
         # Create scatter plot for test set
-        plt.scatter(self.y_test, y_test_predicted, color='green', alpha=0.5)
-        plt.title('Actual vs. Predicted Values (Test Set)')
-        plt.xlabel('Actual Values')
-        plt.ylabel('Predicted Values')
-        scatter_test= f"scatterplot-test.png"
+        plt.scatter(self.y_test, y_test_predicted, color="green", alpha=0.5)
+        plt.title("Actual vs. Predicted Values (Test Set)")
+        plt.xlabel("Actual Values")
+        plt.ylabel("Predicted Values")
+        scatter_test = f"scatterplot-test.png"
+        self.scatter_train = f"http://127.0.0.1:8000/fetchScatterplot/{dataset}/{self.model_path}/scatterplot-test.png"
         file_path_scatter_test = os.path.join(subdirectory_path, scatter_test)
         plt.savefig(file_path_scatter_test)  # Save the plot as an image
 
@@ -115,7 +123,9 @@ class ModelSelector:
         model_path = model_name + "_" + date_string
 
         # base_directory = r"D:\dtc-dr\digitaltwins\api\datasets\Movie\models"
-        base_directory = os.path.join(settings.BASE_DIR, 'api/datasets', self.dataset.split('\\')[-2], "models")
+        base_directory = os.path.join(
+            settings.BASE_DIR, "api/datasets", self.dataset.split("\\")[-2], "models"
+        )
         print(base_directory)
         # base_directory = os.path.dirname(os.path.abspath(__file__))
         subdirectory_path = os.path.join(base_directory, model_path)
@@ -131,20 +141,26 @@ class ModelSelector:
         meta_file_name = f"{model_name}_{date_string}_meta.json"
         file_path_meta_info = os.path.join(subdirectory_path, meta_file_name)
 
+        self.model_path = model_path
+        self.createScatterPlot(subdirectory_path)
+        
         meta_info = {
+            "model_name": model_path,
             "created_at": self.created,
             "dataset": self.dataset,
             "model_parameters": self.trained_parameters,
             "X": features,
             "y": y,
-            "evaluation": self.evaluateModel()
+            "evaluation": self.evaluateModel(),
         }
 
         with open(file_path_meta_info, "w") as meta_file:
             json.dump(meta_info, meta_file, indent=4)
-
+        
         self.meta_info = meta_info
-        self.createScatterPlot(subdirectory_path)
+
+        return f"{model_name}_{date_string} succesfully created at {date_string}"
+
 
 class DatasetEvaluator:
     def __init__(self, dataset: str, dataset_dir: str):
@@ -162,11 +178,13 @@ class DatasetEvaluator:
         # Check correlation
         corr_df = pd.get_dummies(data=self.df, drop_first=False)
         corr_df
-        
+
         correlation_matrix = corr_df.corr()
         columns = corr_df.columns.tolist()
         # Step 2: Visualize the correlation matrix using a heatmap
-        fig, ax = plt.subplots(figsize=(columns, columns))  # Adjust the figure size as needed
+        fig, ax = plt.subplots(
+            figsize=(columns, columns)
+        )  # Adjust the figure size as needed
         sns.heatmap(
             correlation_matrix,
             annot=True,
