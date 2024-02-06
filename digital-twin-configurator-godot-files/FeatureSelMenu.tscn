@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cj6rpdmv2bt5a"]
+[gd_scene load_steps=6 format=3 uid="uid://cj6rpdmv2bt5a"]
 
 [ext_resource type="Script" path="res://scripts/FeatureSelMenu.gd" id="1_8p633"]
 
@@ -6,6 +6,12 @@
 font_size = 22
 
 [sub_resource type="LabelSettings" id="LabelSettings_xe6s1"]
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_qh5jl"]
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_s5oca"]
 font_size = 18
 
 [node name="GraphNode" type="GraphNode"]
@@ -88,6 +94,15 @@ slot/7/right_type = 0
 slot/7/right_color = Color(1, 1, 1, 1)
 slot/7/right_icon = null
 slot/7/draw_stylebox = true
+slot/8/left_enabled = false
+slot/8/left_type = 0
+slot/8/left_color = Color(1, 1, 1, 1)
+slot/8/left_icon = null
+slot/8/right_enabled = false
+slot/8/right_type = 0
+slot/8/right_color = Color(1, 1, 1, 1)
+slot/8/right_icon = null
+slot/8/draw_stylebox = true
 script = ExtResource("1_8p633")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -122,8 +137,7 @@ flat = true
 
 [node name="modelSelectorLabel" type="Label" parent="."]
 layout_mode = 2
-text = "Modelkeuze
-"
+text = "Choose model"
 
 [node name="train_dataset_container" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -142,7 +156,7 @@ text = "Train Dataset!"
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
 text = "
-Feature Selectie:"
+Feature Selection:"
 label_settings = SubResource("LabelSettings_xe6s1")
 
 [node name="column_headers" type="HBoxContainer" parent="."]
@@ -192,8 +206,116 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 
+[node name="ResultsButton" type="Button" parent="."]
+visible = false
+layout_mode = 2
+text = "View Results"
+
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="PopupPanel" type="PopupPanel" parent="."]
+title = "Test Results"
+initial_position = 1
+size = Vector2i(346, 236)
+borderless = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PopupPanel"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 342.0
+offset_bottom = 232.0
+
+[node name="Trainbox" type="VBoxContainer" parent="PopupPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="train_set" type="Label" parent="PopupPanel/HBoxContainer/Trainbox"]
+layout_mode = 2
+text = "Trainset
+"
+label_settings = SubResource("LabelSettings_qh5jl")
+
+[node name="R2_trainbox" type="HBoxContainer" parent="PopupPanel/HBoxContainer/Trainbox"]
+layout_mode = 2
+
+[node name="R2_train_title_label" type="Label" parent="PopupPanel/HBoxContainer/Trainbox/R2_trainbox"]
+layout_mode = 2
+text = "R2:"
+
+[node name="R2_train_label" type="Label" parent="PopupPanel/HBoxContainer/Trainbox/R2_trainbox"]
+layout_mode = 2
+
+[node name="MSE_trainbox" type="HBoxContainer" parent="PopupPanel/HBoxContainer/Trainbox"]
+layout_mode = 2
+
+[node name="MSE_train_title_label" type="Label" parent="PopupPanel/HBoxContainer/Trainbox/MSE_trainbox"]
+layout_mode = 2
+text = "MSE: "
+
+[node name="MSE_train_label" type="Label" parent="PopupPanel/HBoxContainer/Trainbox/MSE_trainbox"]
+layout_mode = 2
+
+[node name="RMSE_trainbox" type="HBoxContainer" parent="PopupPanel/HBoxContainer/Trainbox"]
+layout_mode = 2
+
+[node name="RMSE_train_title_label" type="Label" parent="PopupPanel/HBoxContainer/Trainbox/RMSE_trainbox"]
+layout_mode = 2
+text = "RMSE: "
+
+[node name="RMSE_train_label" type="Label" parent="PopupPanel/HBoxContainer/Trainbox/RMSE_trainbox"]
+layout_mode = 2
+
+[node name="open_train_plot" type="Button" parent="PopupPanel/HBoxContainer/Trainbox"]
+layout_mode = 2
+text = "Open train plot"
+
+[node name="Testbox" type="VBoxContainer" parent="PopupPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="test_set" type="Label" parent="PopupPanel/HBoxContainer/Testbox"]
+layout_mode = 2
+text = "Testset
+"
+label_settings = SubResource("LabelSettings_s5oca")
+
+[node name="R2_testbox" type="HBoxContainer" parent="PopupPanel/HBoxContainer/Testbox"]
+layout_mode = 2
+
+[node name="R2_test_title_label" type="Label" parent="PopupPanel/HBoxContainer/Testbox/R2_testbox"]
+layout_mode = 2
+text = "R2:"
+
+[node name="R2_test_label" type="Label" parent="PopupPanel/HBoxContainer/Testbox/R2_testbox"]
+layout_mode = 2
+
+[node name="MSE_testbox" type="HBoxContainer" parent="PopupPanel/HBoxContainer/Testbox"]
+layout_mode = 2
+
+[node name="MSE_test_title_label" type="Label" parent="PopupPanel/HBoxContainer/Testbox/MSE_testbox"]
+layout_mode = 2
+text = "MSE: "
+
+[node name="MSE_test_label" type="Label" parent="PopupPanel/HBoxContainer/Testbox/MSE_testbox"]
+layout_mode = 2
+
+[node name="RMSE_testbox" type="HBoxContainer" parent="PopupPanel/HBoxContainer/Testbox"]
+layout_mode = 2
+
+[node name="RMSE_test_title_label" type="Label" parent="PopupPanel/HBoxContainer/Testbox/RMSE_testbox"]
+layout_mode = 2
+text = "RMSE: "
+
+[node name="RMSE_test_label" type="Label" parent="PopupPanel/HBoxContainer/Testbox/RMSE_testbox"]
+layout_mode = 2
+
+[node name="open_test_plot" type="Button" parent="PopupPanel/HBoxContainer/Testbox"]
+layout_mode = 2
+text = "Open test plot"
 
 [connection signal="pressed" from="HBoxContainer/closeButton" to="." method="_on_close_button_pressed"]
 [connection signal="pressed" from="train_dataset_container/start_train_button" to="." method="_on_start_train_button_pressed"]
+[connection signal="pressed" from="ResultsButton" to="." method="_on_results_button_pressed"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="pressed" from="PopupPanel/HBoxContainer/Trainbox/open_train_plot" to="." method="_on_open_train_plot_pressed"]
+[connection signal="pressed" from="PopupPanel/HBoxContainer/Testbox/open_test_plot" to="." method="_on_open_test_plot_pressed"]
