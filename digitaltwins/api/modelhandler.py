@@ -111,7 +111,7 @@ class ModelSelector:
         plt.xlabel("Actual Values")
         plt.ylabel("Predicted Values")
         scatter_test = f"scatterplot-test.png"
-        self.scatter_train = f"http://127.0.0.1:8000/fetchScatterplot/{dataset}/{self.model_path}/scatterplot-test.png"
+        self.scatter_test = f"http://127.0.0.1:8000/fetchScatterplot/{dataset}/{self.model_path}/scatterplot-test.png"
         file_path_scatter_test = os.path.join(subdirectory_path, scatter_test)
         plt.savefig(file_path_scatter_test)  # Save the plot as an image
 

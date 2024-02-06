@@ -1,0 +1,31 @@
+{
+    "model_name": "LinearRegression_20240206161100",
+    "created_at": "2024-02-06 16:10:59",
+    "dataset": "D:\\dtc-dr\\digitaltwins\\api\\datasets\\ToyotaCorolla\\ToyotaCorolla.xlsx",
+    "model_parameters": {
+        "copy_X": true,
+        "fit_intercept": true,
+        "n_jobs": null,
+        "positive": false
+    },
+    "X": [
+        "Movie_length",
+        "Director_rating",
+        "Critic_rating"
+    ],
+    "y": "Budget",
+    "evaluation": {
+        "train": {
+            "R-squared": 0.6609408491649356,
+            "Mean Squared Error": 4439471.005770415,
+            "Root Mean Squared Error": 2107.005222055801,
+            "Scatter-train": "http://127.0.0.1:8000/fetchScatterplot/ToyotaCorolla/LinearRegression_20240206161100/scatterplot-train.png"
+        },
+        "test": {
+            "R-squared": 0.6087974174699546,
+            "Mean Squared Error": 5219733.453809212,
+            "Root Mean Squared Error": 2284.673598965334,
+            "Scatter-test": "http://127.0.0.1:8000/fetchScatterplot/ToyotaCorolla/LinearRegression_20240206161100/scatterplot-test.png"
+        }
+    }
+}
