@@ -10,6 +10,14 @@ extends GraphNode
 var ComponentFeatureSelBool = false
 var ComponentName
 
+#Popup
+@onready var resultsPopup = $PopupPanel
+##Var voor openen Plot
+var urlscattertrain
+var urlscattertest
+##Button voor popup na trainen
+@onready var results_button = $ResultsButton
+
 
 #Features
 # Assuming you have a list of features
@@ -130,7 +138,7 @@ func _on_start_train_button_pressed():
 	print(model_option.get_item_text(model_option.selected),selectedXFeatures,selectedYFeatures)
 	
 	var postBody : Dictionary = {
-	  "dataset": "C:\\Users\\scrae\\Documents\\Zuyd\\2023-2024\\dtc-dr\\data-analyse\\continuous_factory_process.csv",
+	  "dataset": "C:\\Users\\scrae\\Desktop\\dtc-dr\\digitaltwins\\api\\datasets\\continuous_factory_process\\continuous_factory_process.csv",
 	  "features": selectedXFeatures,
 	  "y": selectedYFeatures,
 	  "model": selectedModel,
@@ -146,9 +154,48 @@ func _on_start_train_button_pressed():
 
 
 func _on_http_request_request_completed(result, response_code, headers, body):
+	results_button.visible = true
 	var json = JSON.parse_string(body.get_string_from_utf8())
-	var evaluation = json.evaluation.evaluation.test
-	var r2 = evaluation["R-squared"]
-	var mse = evaluation["Mean Squared Error"]
-	var rmse = evaluation["Root Mean Squared Error"]
-	print("r2: ", r2, " Mean Square Error: ", mse, " Root Mean Square Error: ", rmse)
+	
+	#Train
+	var evaluation_train = json["evaluation"]["evaluation"]["train"]
+	var r2_train = evaluation_train["R-squared"]
+	var mse_train = evaluation_train["Mean Squared Error"]
+	var rmse_train = evaluation_train["Root Mean Squared Error"]
+	
+	
+	#Test
+	var evaluation_test = json["evaluation"]["evaluation"]["test"]
+	var r2_test = evaluation_test["R-squared"]
+	var mse_test = evaluation_test["Mean Squared Error"]
+	var rmse_test = evaluation_test["Root Mean Squared Error"]
+	
+	#Global
+	self.urlscattertrain = evaluation_train["Scatter-train"]
+	self.urlscattertest = evaluation_test["Scatter-test"]
+
+	
+	$PopupPanel/HBoxContainer/Testbox/R2_testbox/R2_test_label.text = str(r2_test)
+	$PopupPanel/HBoxContainer/Testbox/MSE_testbox/MSE_test_label.text = str(mse_test)
+	$PopupPanel/HBoxContainer/Testbox/RMSE_testbox/RMSE_test_label.text = str(rmse_test)
+	
+	$PopupPanel/HBoxContainer/Trainbox/R2_trainbox/R2_train_label.text = str(r2_train)
+	$PopupPanel/HBoxContainer/Trainbox/MSE_trainbox/MSE_train_label.text = str(mse_train)
+	$PopupPanel/HBoxContainer/Trainbox/RMSE_trainbox/RMSE_train_label.text = str(rmse_train)
+	
+	resultsPopup.visible = true
+
+
+func _on_open_train_plot_pressed():
+	OS.shell_open(urlscattertrain)
+	pass
+
+
+func _on_open_test_plot_pressed():
+	OS.shell_open(urlscattertest)
+	pass
+
+
+func _on_results_button_pressed():
+	resultsPopup.visible = true
+	pass
