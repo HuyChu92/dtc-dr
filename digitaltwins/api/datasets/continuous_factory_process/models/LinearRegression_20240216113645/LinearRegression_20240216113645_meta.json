@@ -1,0 +1,31 @@
+{
+    "model_name": "LinearRegression_20240216113645",
+    "created_at": "2024-02-16 11:36:45",
+    "dataset": "D:\\dtc-dr\\digitaltwins\\api\\datasets\\continuous_factory_process\\continuous_factory_process.csv",
+    "model_parameters": {
+        "copy_X": true,
+        "fit_intercept": true,
+        "n_jobs": null,
+        "positive": false
+    },
+    "X": [
+        "Movie_length",
+        "Director_rating",
+        "Critic_rating"
+    ],
+    "y": "Budget",
+    "evaluation": {
+        "train": {
+            "R-squared": 0.8168442039487912,
+            "Mean Squared Error": 2934.70170992428,
+            "Root Mean Squared Error": 54.1728872216008,
+            "Scatter-train": "http://127.0.0.1:8000/fetchScatterplot/continuous_factory_process/LinearRegression_20240216113645/scatterplot-train.png"
+        },
+        "test": {
+            "R-squared": 0.8003748070955019,
+            "Mean Squared Error": 3217.292776631658,
+            "Root Mean Squared Error": 56.72118454891133,
+            "Scatter-test": "http://127.0.0.1:8000/fetchScatterplot/continuous_factory_process/LinearRegression_20240216113645/scatterplot-test.png"
+        }
+    }
+}

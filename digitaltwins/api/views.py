@@ -192,7 +192,7 @@ def dataset_detail(request, dataset):
     df = pd.read_csv(dataset_source) if 'csv' in dataset else pd.read_excel(dataset_source)
     total_nan_count = df.isna().sum().sum()
     duplicate_count = df.duplicated().sum()
-    columns = df.tolist()
+    columns = df.columns.tolist()
     return JsonResponse({"NaN": int(total_nan_count), "duplicate_count": int(duplicate_count), "columns": columns })
 
 # def dataset_plotimage(request, dataset, imagename):
