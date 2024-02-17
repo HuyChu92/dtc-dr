@@ -23,7 +23,8 @@ Python dependencies zijn terug te vinden in de `requirements.txt`.
 ### Bekende problemen:
 
 * Het inladen van scatterplots in de API in Godot is reeds nog niet geimplementeerd.
-* Voor demonstartiedoeleinden, zijn in het `FeatureSelMenu.gd` script de te trainen features hardcored, deze feature-variabele dient te worden toegewezen opgehaald met een `httprequest` node.  
+* Voor demonstartiedoeleinden, zijn in het `FeatureSelMenu.gd` script de te trainen features hardcored, deze feature-variabele dient te worden toegewezen opgehaald met een `httprequest` node.
+* De `flask` folder is niet langer in gebruik, `Flask` wordt nu gehanteerd.
 
 ### Installatie & eerste gebruik:
 
