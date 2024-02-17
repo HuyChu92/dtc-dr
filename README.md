@@ -6,15 +6,15 @@ Project in naam van - https://dataintelligence.zuyd.nl/
 
 ### Functies:
 
-* 'Send' en 'Receive' componenten
-* 'Send' componentmenu voor API's toewijzen
-* Associaties leggen tussen componenten
-* Drag and Drop raster interface
-* Data analyse via Flask
+* Toevoegen van ´Componenten´ op een raster. Gebruikers kunnen zelf invulling bepalen voor deze componenten. Bijv. het voorstellen van een machine of proces in de maakindustrie.
+* Het toewijzen van een naam en pictogram aan een component. Pictogrammen worden voor nu geregeld in `digital-twin-configurator-godot-files/icons` en het script `digital-twin-configurator-godot-files/scripts/Component.gd`
+  * Het trainen van datasets voor een component met vier mogelijke modellen.
+  * Het inladen van .csv datasets in de Api `local/uploadDataset`. Vervolgens kunnen deze datasets toegewezen worden aan een component.
+  * Het kiezen van Features uit een geuploade dataset 
 
 ### Dependencies:
 
-* Godot versie 4.1.3 [https://godotengine.org/]
+* Godot versie 4.2 [https://godotengine.org/]
 * Flask [https://github.com/pallets/flask]
 
 ### Bekende problemen:
